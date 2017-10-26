@@ -9,90 +9,86 @@
 <ion-content padding>
   <ion-grid>
     <ion-row>
-      <ion-col col-4>
         <ion-card>
           <ion-card-header>
             Legenda:
           </ion-card-header>
           <ion-card-content>
             <ion-row>
-              <button ion-button icon-start color="secondary">
+              <button ion-button icon-start full color="secondary">
                 <ion-icon name="happy"></ion-icon>
                 Disponível
               </button>
             </ion-row>
             <ion-row>
-              <button ion-button icon-start color="danger">
+              <button ion-button icon-start full color="danger">
                 <ion-icon name="lock"></ion-icon>
                 Ocupado
               </button>
             </ion-row>
             <ion-row>
-              <button ion-button icon-start color="danger">
+              <button ion-button icon-start full color="danger">
                 <ion-icon name="warning"></ion-icon>
-                Ocupado a mais de 15 minutos
+                15 minutos +
               </button>
             </ion-row>
             <ion-row>
-              <button ion-button icon-start color="dark">
-                <ion-icon name="sad"></ion-icon>
-                Ocupado a mais de 30 minutos!
+              <button ion-button icon-start full color="darkFC">
+                <ion-icon name="medkit"></ion-icon>
+                30 minutos +!
               </button>
             </ion-row>
           </ion-card-content>
         </ion-card>
-      </ion-col>
-      <ion-col col-4>
         <ion-card>
           <ion-card-header>
             Mapa:
           </ion-card-header>
           <ion-card-content>
             <ion-row>
-              <button ion-button icon-only color="secondary">
-                <ion-icon name="happy"></ion-icon>
+              <button ion-button icon-only (click)="onClick()" color="{{color[0][a]}}">
+                <ion-icon name="{{icon[0][a]}}"></ion-icon>
               </button>
-              <button ion-button icon-only color="secondary">
-                <ion-icon name="happy"></ion-icon>
+              <button ion-button icon-only (click)="onClick2()" color="{{color[1][b]}}">
+                <ion-icon name="{{icon[1][b]}}"></ion-icon>
               </button>
-              <button ion-button icon-only color="secondary">
-                <ion-icon name="happy"></ion-icon>
+              <button ion-button icon-only (click)="onClick3()" color="{{color[2][c]}}">
+                <ion-icon name="{{icon[2][c]}}"></ion-icon>
               </button>
-              <button ion-button icon-only color="secondary">
-                <ion-icon name="happy"></ion-icon>
-              </button>
-            </ion-row>
-            <ion-row>
-              <button ion-button icon-only color="secondary">
-                <ion-icon name="happy"></ion-icon>
-              </button>
-              <button ion-button icon-only color="secondary">
-                <ion-icon name="happy"></ion-icon>
-              </button>
-              <button ion-button icon-only color="secondary">
-                <ion-icon name="happy"></ion-icon>
-              </button>
-              <button ion-button icon-only color="secondary">
-                <ion-icon name="happy"></ion-icon>
+              <button ion-button icon-only (click)="onClick4()" color="{{color[3][d]}}">
+                <ion-icon name="{{icon[3][d]}}"></ion-icon>
               </button>
             </ion-row>
             <ion-row>
-              <button ion-button icon-only color="secondary">
-                <ion-icon name="happy"></ion-icon>
+              <button ion-button icon-only (click)="onClick5()" color="{{color[4][e]}}">
+                <ion-icon name="{{icon[4][e]}}"></ion-icon>
               </button>
-              <button ion-button icon-only color="secondary">
-                <ion-icon name="happy"></ion-icon>
+              <button ion-button icon-only (click)="onClick6()" color="{{color[5][f]}}">
+                <ion-icon name="{{icon[5][f]}}"></ion-icon>
               </button>
-              <button ion-button icon-only color="secondary">
-                <ion-icon name="happy"></ion-icon>
+              <button ion-button icon-only (click)="onClick7()" color="{{color[6][g]}}">
+                <ion-icon name="{{icon[6][g]}}"></ion-icon>
               </button>
-              <button ion-button icon-only color="secondary">
-                <ion-icon name="happy"></ion-icon>
+              <button ion-button icon-only (click)="onClick8()" color="{{color[7][h]}}">
+                <ion-icon name="{{icon[7][h]}}"></ion-icon>
+              </button>
+            </ion-row>
+            <ion-row>
+              <button ion-button icon-only (click)="onClick9()" color="{{color[8][i]}}">
+                <ion-icon name="{{icon[8][i]}}"></ion-icon>
+              </button>
+              <button ion-button icon-only (click)="onClick10()" color="{{color[9][j]}}">
+                <ion-icon name="{{icon[9][j]}}"></ion-icon>
+              </button>
+              <button ion-button icon-only (click)="onClick11()" color="{{color[10][k]}}">
+                <ion-icon name="{{icon[10][k]}}"></ion-icon>
+              </button>
+              <button ion-button icon-only (click)="onClick12()" color="{{color[11][l]}}">
+                <ion-icon name="{{icon[11][l]}}"></ion-icon>
               </button>
             </ion-row>
           </ion-card-content>
         </ion-card>
-      </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
