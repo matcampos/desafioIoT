@@ -1,14 +1,98 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="orangeFC">
     <ion-title>
-      Ionic Blank
+      Banheiros
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-4>
+        <ion-card>
+          <ion-card-header>
+            Legenda:
+          </ion-card-header>
+          <ion-card-content>
+            <ion-row>
+              <button ion-button icon-start color="secondary">
+                <ion-icon name="happy"></ion-icon>
+                Disponível
+              </button>
+            </ion-row>
+            <ion-row>
+              <button ion-button icon-start color="danger">
+                <ion-icon name="lock"></ion-icon>
+                Ocupado
+              </button>
+            </ion-row>
+            <ion-row>
+              <button ion-button icon-start color="danger">
+                <ion-icon name="warning"></ion-icon>
+                Ocupado a mais de 15 minutos
+              </button>
+            </ion-row>
+            <ion-row>
+              <button ion-button icon-start color="dark">
+                <ion-icon name="sad"></ion-icon>
+                Ocupado a mais de 30 minutos!
+              </button>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col col-4>
+        <ion-card>
+          <ion-card-header>
+            Mapa:
+          </ion-card-header>
+          <ion-card-content>
+            <ion-row>
+              <button ion-button icon-only color="secondary">
+                <ion-icon name="happy"></ion-icon>
+              </button>
+              <button ion-button icon-only color="secondary">
+                <ion-icon name="happy"></ion-icon>
+              </button>
+              <button ion-button icon-only color="secondary">
+                <ion-icon name="happy"></ion-icon>
+              </button>
+              <button ion-button icon-only color="secondary">
+                <ion-icon name="happy"></ion-icon>
+              </button>
+            </ion-row>
+            <ion-row>
+              <button ion-button icon-only color="secondary">
+                <ion-icon name="happy"></ion-icon>
+              </button>
+              <button ion-button icon-only color="secondary">
+                <ion-icon name="happy"></ion-icon>
+              </button>
+              <button ion-button icon-only color="secondary">
+                <ion-icon name="happy"></ion-icon>
+              </button>
+              <button ion-button icon-only color="secondary">
+                <ion-icon name="happy"></ion-icon>
+              </button>
+            </ion-row>
+            <ion-row>
+              <button ion-button icon-only color="secondary">
+                <ion-icon name="happy"></ion-icon>
+              </button>
+              <button ion-button icon-only color="secondary">
+                <ion-icon name="happy"></ion-icon>
+              </button>
+              <button ion-button icon-only color="secondary">
+                <ion-icon name="happy"></ion-icon>
+              </button>
+              <button ion-button icon-only color="secondary">
+                <ion-icon name="happy"></ion-icon>
+              </button>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
