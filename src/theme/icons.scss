@@ -1,0 +1,43 @@
+@font-face {
+  font-family: 'icomoon';
+  src:  url('../assets/fonts/icomoon.eot?e5g8al');
+  src:  url('../assets/fonts/icomoon.eot?e5g8al#iefix') format('embedded-opentype'),
+    url('../assets/fonts/icomoon.ttf?e5g8al') format('truetype'),
+    url('../assets/fonts/icomoon.woff?e5g8al') format('woff'),
+    url('../assets/fonts/icomoon.svg?e5g8al#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-poo:before ,
+.ion-ios-icon-poo:before,
+.ion-ios-icon-poo-outline:before,
+.ion-md-icon-poo:before,
+.ion-md-icon-poo-outline:before {
+  font-size: 26px;
+  content: "\e900";
+}
+
+.icon-skull:before ,
+.ion-ios-icon-skull:before,
+.ion-ios-icon-skull-outline:before,
+.ion-md-icon-skull:before,
+.ion-md-icon-skull-outline:before {
+  font-size: 26px;
+  content: "\e901";
+}
