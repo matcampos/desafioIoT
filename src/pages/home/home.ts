@@ -24,7 +24,7 @@ export class HomePage {
   l = 0;
 
   color = [["secondary","danger","danger","darkFC"],["secondary","danger","danger","darkFC"],["secondary","danger","danger","darkFC"],["secondary","danger","danger","darkFC"],["secondary","danger","danger","darkFC"],["secondary","danger","danger","darkFC"],["secondary","danger","danger","darkFC"],["secondary","danger","danger","darkFC"],["secondary","danger","danger","darkFC"],["secondary","danger","danger","darkFC"],["secondary","danger","danger","darkFC"],["secondary","danger","danger","darkFC"]];
-  icon = [["happy","poo","warning","skull"],["happy","lock","warning","medkit"],["happy","lock","warning","medkit"],["happy","lock","warning","medkit"],["happy","lock","warning","medkit"],["happy","lock","warning","medkit"],["happy","lock","warning","medkit"],["happy","lock","warning","medkit"],["happy","lock","warning","medkit"],["happy","lock","warning","medkit"],["happy","lock","warning","medkit"],["happy","lock","warning","medkit"]];
+  icon = [["happy","icon-poo","warning","icon-skull"],["happy","icon-poo","warning","icon-skull"],["happy","icon-poo","warning","icon-skull"],["happy","icon-poo","warning","icon-skull"],["happy","icon-poo","warning","icon-skull"],["happy","icon-poo","warning","icon-skull"],["happy","icon-poo","warning","icon-skull"],["happy","icon-poo","warning","icon-skull"],["happy","icon-poo","warning","icon-skull"],["happy","icon-poo","warning","icon-skull"],["happy","icon-poo","warning","icon-skull"],["happy","icon-poo","warning","icon-skull"]];
   onClick(){
     this.a = Math.floor(Math.random() * 4);
   }
