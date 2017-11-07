@@ -7,6 +7,7 @@ page-home {
     padding-top:7px;
     border-radius:2px;
     box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.45);
+    width: 400px;
 }
 
 
@@ -16,9 +17,7 @@ page-home {
     color:white;
 
 }
-#item3{
-    background-color: #ffc107;
-}
+
 ul{
     list-style-type: none;
 }
@@ -26,10 +25,16 @@ ul{
 .imgToilet{
     width: 70px;
     height:70px;
+    text-align: center;
+    padding-top:8px;
     float:left;
     margin-right:20px;
     border-radius:50%;
+    font-size:50px;
+    background-color:#221205;
+    color:white;
 }
+
 .itemSliding{
     border-bottom: solid 1px #ccc;
 }
@@ -38,11 +43,47 @@ ul{
     margin-top:-50px;
     clear:both;
     float:right;
+    display: list-item;
 }
 .li{
     display: inline;
+  
 }
 
-.icon-poo{
-  font-family: 10px; 
+
+
+@media (min-width:321px) and (max-width:360px){
+    li{
+        font-size: 10px;
+    }
+
+}
+
+@media (max-width:320px){
+    li{
+        font-size: 8px;
+    }
+    .li{
+        display: inherit;
+      
+    }
+    .li2{
+        display:inline;
+    }
+    .itemLegend{
+     font-size:10px;
+    }
+}
+
+@media (min-width:321px) and (max-width: 375px){
+    li{
+        font-size: 13px;
+    }
+    .li{
+        display: inherit;
+      
+    }
+    .li2{
+        display:inline;
+    }
 }
