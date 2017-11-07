@@ -51,20 +51,14 @@
             Mapa:
           </ion-card-header>
           <ion-card-content>
-            <ion-list>
-
+            <ion-list *ngIf="showContent" >
               <ion-item-sliding class="itemSliding" #item>
                 <ion-item>
                   <img class="imgToilet" src="https://scontent.fgig1-4.fna.fbcdn.net/v/t1.0-9/23172828_10210481516300990_3526887598963121758_n.jpg?oh=2577ff7bb8023a95ed740091afe39c8d&oe=5A70AFAC"
                   />
                   <ul>
-                    <li> Nome Banheiro 1</li>
-                    <li> descricao</li>
-                  </ul>
-                  <ul class="time">
-                    <li class="li">Disponível há</li>
-                    <li class="li">2</li>
-                    <li class="li">minutos</li>
+                    <li> Banheiro Corinthians</li>
+                    <li> {{status}}</li>
                   </ul>
                 </ion-item>
                 <ion-item-options side="left">
