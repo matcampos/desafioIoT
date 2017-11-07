@@ -51,17 +51,13 @@
             Mapa:
           </ion-card-header>
           <ion-card-content>
-            <ion-list>
-
+            <ion-list *ngIf="showContent" >
               <ion-item-sliding class="itemSliding" #item>
                 <ion-item>
                     <ion-icon class="imgToilet" name="icon-poo"></ion-icon>
                   <ul>
-                    <li> Nome Banheiro 1</li>
-                    <li> descricao</li>
-                    <li class="li">Disponível há</li>
-                    <li class="li li2">2</li>
-                    <li class="li li2">minutos</li>
+                    <li> Banheiro Corinthians</li>
+                    <li> {{status}}</li>
                   </ul>
                 </ion-item>
 
