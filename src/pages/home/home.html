@@ -65,12 +65,17 @@
                     name="icon-poo"></ion-icon>
                   <ion-icon *ngIf="data1.available == false && data1.timestamp > 3000000000" class="imgToilet-death" name="icon-skull"></ion-icon>
 
-                  <ul>
+                  <ul *ngIf="status == 'Ocupado'">
                     <li> Banheiro Corinthians </li>
                     <li class="li"> {{status}} há </li>
                     <li class="li li2">{{tempo}}</li>
                     <li class="li li2">minutos</li>
                   </ul>
+
+                  <ul *ngIf="status == 'Disponível'">
+                      <li> Banheiro Corinthians </li>
+                      <li class="li"> {{status}}  </li>
+                    </ul>
                 </ion-item>
 
                 <ion-item-options side="right">
