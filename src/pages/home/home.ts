@@ -60,5 +60,10 @@ export class HomePage implements OnInit {
       console.log('Async operation has ended');
       refresher.complete();
     }, 500);
+
+    setTimeout(() =>{
+      this.doRefresh(refresher);
+      console.log('esperou, atualizou');
+    }, 10000);
   }
 }
