@@ -7,6 +7,10 @@
 </ion-header>
 
 <ion-content padding>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Puxe para recarregar" refreshingSpinner="circles" refreshingText="Recarregando...">
+    </ion-refresher-content>
+  </ion-refresher>
   <ion-grid>
     <ion-row>
       <ion-col col-12>
@@ -22,14 +26,14 @@
               </ion-badge>
             </ion-row>
             <ion-row>
-              <ion-badge class="itemLegend" icon-start color="danger">
-                <ion-icon class="icon-poo" name="icon-poo"></ion-icon>
+              <ion-badge class="itemLegend" icon-start color="yellowFC">
+                <ion-icon name="warning"></ion-icon>
                 Ocupado
               </ion-badge>
             </ion-row>
             <ion-row>
-              <ion-badge class="itemLegend" icon-start color="yellowFC">
-                <ion-icon name="warning"></ion-icon>
+              <ion-badge class="itemLegend" icon-start color="danger">
+                <ion-icon class="icon-poo" name="icon-poo"></ion-icon>
                 Ocupado a mais de 15 minutos
               </ion-badge>
             </ion-row>
@@ -51,25 +55,33 @@
             Mapa:
           </ion-card-header>
           <ion-card-content>
-            <ion-list *ngIf="showContent" >
+            <ion-list *ngIf="showContent">
+
               <ion-item-sliding class="itemSliding" #item>
                 <ion-item>
-                    <ion-icon class="imgToilet" name="icon-poo"></ion-icon>
+                  <ion-icon *ngIf="data1.available == true" class="imgToilet-happy" name="happy"></ion-icon>
+                  <ion-icon *ngIf="data1.available == false && data1.timestamp < 1500000000 " class="imgToilet-warning" name="warning"></ion-icon>
+                  <ion-icon *ngIf="data1.available == false && data1.timestamp > 1500000000 && data1.timestamp < 3000000000" class="imgToilet"
+                    name="icon-poo"></ion-icon>
+                  <ion-icon *ngIf="data1.available == false && data1.timestamp > 3000000000" class="imgToilet-death" name="icon-skull"></ion-icon>
+
                   <ul>
-                    <li> Banheiro Corinthians</li>
-                    <li> {{status}}</li>
+                    <li> Banheiro Corinthians </li>
+                    <li class="li"> {{status}} há </li>
+                    <li class="li li2">{{tempo}}</li>
+                    <li class="li li2">minutos</li>
                   </ul>
                 </ion-item>
 
                 <ion-item-options side="right">
-                  <button ion-button (click)="unread(item)">Notificar Problema</button>
+                  <button ion-button>Notificar Problema</button>
                 </ion-item-options>
               </ion-item-sliding>
 
 
               <ion-item-sliding class="itemSliding" #item>
                 <ion-item>
-                    <ion-icon class="imgToilet" name="icon-poo"></ion-icon>
+                  <ion-icon class="imgToilet" name="icon-poo"></ion-icon>
                   <ul>
                     <li> Nome Banheiro 2</li>
                     <li> descricao</li>
@@ -86,7 +98,7 @@
 
               <ion-item-sliding class="itemSliding" #item>
                 <ion-item>
-                    <ion-icon class="imgToilet" name="icon-poo"></ion-icon>
+                  <ion-icon class="imgToilet" name="icon-poo"></ion-icon>
                   <ul>
                     <li> Nome Banheiro 3</li>
                     <li> descricao</li>
@@ -103,7 +115,7 @@
 
               <ion-item-sliding class="itemSliding" #item>
                 <ion-item>
-                    <ion-icon class="imgToilet" name="icon-poo"></ion-icon>
+                  <ion-icon class="imgToilet" name="icon-poo"></ion-icon>
                   <ul>
                     <li> Nome Banheiro 4</li>
                     <li> descricao</li>
@@ -120,7 +132,7 @@
 
               <ion-item-sliding class="itemSliding" #item>
                 <ion-item>
-                    <ion-icon class="imgToilet" name="icon-poo"></ion-icon>
+                  <ion-icon class="imgToilet" name="icon-poo"></ion-icon>
                   <ul>
                     <li> Nome Banheiro 5</li>
                     <li> descricao</li>
@@ -137,7 +149,7 @@
 
               <ion-item-sliding class="itemSliding" #item>
                 <ion-item>
-                    <ion-icon class="imgToilet" name="icon-poo"></ion-icon>
+                  <ion-icon class="imgToilet" name="icon-poo"></ion-icon>
                   <ul>
                     <li> Nome Banheiro 6</li>
                     <li> descricao</li>
@@ -154,7 +166,7 @@
 
               <ion-item-sliding class="itemSliding" #item>
                 <ion-item>
-                    <ion-icon class="imgToilet" name="icon-poo"></ion-icon>
+                  <ion-icon class="imgToilet" name="icon-poo"></ion-icon>
                   <ul>
                     <li> Nome Banheiro 7</li>
                     <li> descricao</li>
@@ -171,7 +183,7 @@
 
               <ion-item-sliding class="itemSliding" #item>
                 <ion-item>
-                    <ion-icon class="imgToilet" name="icon-poo"></ion-icon>
+                  <ion-icon class="imgToilet" name="icon-poo"></ion-icon>
                   <ul>
                     <li> Nome Banheiro 8</li>
                     <li> descricao</li>
@@ -189,7 +201,7 @@
 
               <ion-item-sliding class="itemSliding" #item>
                 <ion-item>
-                    <ion-icon class="imgToilet" name="icon-poo"></ion-icon>
+                  <ion-icon class="imgToilet" name="icon-poo"></ion-icon>
                   <ul>
                     <li> Nome Banheiro 9</li>
                     <li> descricao</li>
@@ -206,7 +218,7 @@
 
               <ion-item-sliding class="itemSliding" #item>
                 <ion-item>
-                    <ion-icon class="imgToilet" name="icon-poo"></ion-icon>
+                  <ion-icon class="imgToilet" name="icon-poo"></ion-icon>
                   <ul>
                     <li> Nome Banheiro 10</li>
                     <li> descricao</li>
@@ -223,7 +235,7 @@
 
               <ion-item-sliding class="itemSliding" #item>
                 <ion-item>
-                    <ion-icon class="imgToilet" name="icon-poo"></ion-icon>
+                  <ion-icon class="imgToilet" name="icon-poo"></ion-icon>
                   <ul>
                     <li> Nome Banheiro 11</li>
                     <li> descricao</li>
@@ -240,7 +252,7 @@
 
               <ion-item-sliding #item>
                 <ion-item>
-                    <ion-icon class="imgToilet" name="icon-poo"></ion-icon>
+                  <ion-icon class="imgToilet" name="icon-poo"></ion-icon>
                   <ul>
                     <li> Nome Banheiro 12</li>
                     <li> descricao</li>
