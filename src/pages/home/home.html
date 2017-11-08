@@ -59,16 +59,16 @@
 
               <ion-item-sliding class="itemSliding" #item>
                 <ion-item>
-                  <ion-icon *ngIf="data1.available == true" class="imgToilet-happy" name="happy"></ion-icon>
-                  <ion-icon *ngIf="data1.available == false && data1.timestamp < 1500000000 " class="imgToilet-warning" name="warning"></ion-icon>
-                  <ion-icon *ngIf="data1.available == false && data1.timestamp > 1500000000 && data1.timestamp < 3000000000" class="imgToilet"
+                  <ion-icon *ngIf="status == 'Disponível'" class="imgToilet-happy" name="happy"></ion-icon>
+                  <ion-icon *ngIf="status == 'Ocupado' && data1.timestamp < 1500000000 " class="imgToilet-warning" name="warning"></ion-icon>
+                  <ion-icon *ngIf="status == 'Ocupado' && data1.timestamp > 1500000000 && data1.timestamp < 3000000000" class="imgToilet"
                     name="icon-poo"></ion-icon>
-                  <ion-icon *ngIf="data1.available == false && data1.timestamp > 3000000000" class="imgToilet-death" name="icon-skull"></ion-icon>
+                  <ion-icon *ngIf="status == 'Ocupado' && data1.timestamp > 3000000000" class="imgToilet-death" name="icon-skull"></ion-icon>
 
                   <ul *ngIf="status == 'Ocupado'">
                     <li> Banheiro Corinthians </li>
                     <li class="li"> {{status}} há </li>
-                    <li class="li li2">{{tempo}}</li>
+                    <li class="li li2">X</li>
                     <li class="li li2">minutos</li>
                   </ul>
 

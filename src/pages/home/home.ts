@@ -59,6 +59,6 @@ export class HomePage implements OnInit {
     setTimeout(() => {
       console.log('Async operation has ended');
       refresher.complete();
-    }, 2000);
+    }, 500);
   }
 }
