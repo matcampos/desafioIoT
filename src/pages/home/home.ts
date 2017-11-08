@@ -20,22 +20,23 @@ export class HomePage implements OnInit {
   tempo: string;
 
 
-  ngOnInit() {
+ ngOnInit() {
     this.showContent = false;
       this.http
         .get('https://raspbarry-78187.firebaseio.com/toilets.json')
-        .subscribe(async res => {
+        .subscribe(res => {
           this.data = res;
           console.log(this.data);
           this.data = JSON.parse(this.data._body);
           console.log(this.data);          
-          await this.ionViewDidLoad(this.data);
+          this.aionViewDidLoad(this.data.toilet1);
           this.showContent = true;
         }, err => { console.log(err) })
   }
 
-  ionViewDidLoad(info) {
-    if (this.data1.available == true) {
+  aionViewDidLoad(info) {
+    console.log(info);
+    if (info.available == true) {
       this.status = "Disponível";
       this.tempo = this.data1.timestamp.toString();
       if (this.tempo.length == 10) {
