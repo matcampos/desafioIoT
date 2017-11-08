@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Http } from '@angular/http';
+import 'rxjs/add/operator/map';
 import { NavController } from 'ionic-angular';
+
 
 @Component({
   selector: 'page-home',
@@ -7,8 +10,9 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage implements OnInit {
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, public http: Http) {
   }
+  data
   data1 = { "available": true, "timestamp": 310065830 };
   data2 = { "available": true, "timestamp": 1518065830 };
   showContent: boolean = false;
@@ -17,37 +21,43 @@ export class HomePage implements OnInit {
 
 
   ngOnInit() {
-    this.ionViewDidLoad();
+    this.showContent = false;
+      this.http
+        .get('https://raspbarry-78187.firebaseio.com/toilets.json')
+        .subscribe(async res => {
+          this.data = res;
+          console.log(this.data);
+          this.data = JSON.parse(this.data._body);
+          console.log(this.data);          
+          await this.ionViewDidLoad(this.data);
+          this.showContent = true;
+        }, err => { console.log(err) })
   }
 
-  ionViewDidLoad() {
-
+  ionViewDidLoad(info) {
     if (this.data1.available == true) {
-      this.showContent = true;
       this.status = "Disponível";
       this.tempo = this.data1.timestamp.toString();
-      if (this.tempo.length == 10){
-        this.tempo = this.tempo.substring(0,2);
+      if (this.tempo.length == 10) {
+        this.tempo = this.tempo.substring(0, 2);
       }
-      if (this.tempo.length == 9){
-        this.tempo = this.tempo.substring(0,1);
+      if (this.tempo.length == 9) {
+        this.tempo = this.tempo.substring(0, 1);
       }
     }
     else {
       this.status = "Ocupado";
-      this.showContent = true;
     }
     console.log(status);
   }
 
   doRefresh(refresher) {
-    this.showContent = false;
+    this.ngOnInit();
     console.log('Begin async operation', refresher);
 
     setTimeout(() => {
       console.log('Async operation has ended');
       refresher.complete();
     }, 2000);
-    this.showContent = true;
   }
 }
