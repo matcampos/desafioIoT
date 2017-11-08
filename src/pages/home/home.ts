@@ -41,6 +41,7 @@ export class HomePage implements OnInit {
   }
 
   doRefresh(refresher) {
+    this.showContent = false;
     console.log('Begin async operation', refresher);
 
     setTimeout(() => {
