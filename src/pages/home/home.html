@@ -6,9 +6,9 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding (load)="autoRefresh()">
   <ion-refresher (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Puxe para recarregar" refreshingSpinner="circles" refreshingText="Recarregando...">
+    <ion-refresher-content pullingIcon="icon-poo" pullingText="Puxe para recarregar" refreshingSpinner="circles" refreshingText="Recarregando...">
     </ion-refresher-content>
   </ion-refresher>
   <ion-grid>

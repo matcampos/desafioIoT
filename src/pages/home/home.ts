@@ -32,24 +32,17 @@ export class HomePage implements OnInit {
           this.aionViewDidLoad(this.data.toilet1);
           this.showContent = true;
         }, err => { console.log(err) })
+    this.autoRefresh();
   }
 
   aionViewDidLoad(info) {
     console.log(info);
     if (info.available == true) {
       this.status = "Disponível";
-      this.tempo = this.data1.timestamp.toString();
-      if (this.tempo.length == 10) {
-        this.tempo = this.tempo.substring(0, 2);
-      }
-      if (this.tempo.length == 9) {
-        this.tempo = this.tempo.substring(0, 1);
-      }
     }
     else {
       this.status = "Ocupado";
     }
-    console.log(status);
   }
 
   doRefresh(refresher) {
@@ -60,10 +53,12 @@ export class HomePage implements OnInit {
       console.log('Async operation has ended');
       refresher.complete();
     }, 500);
+  }
 
+  autoRefresh() {
     setTimeout(() =>{
-      this.doRefresh(refresher);
-      console.log('esperou, atualizou');
+      this.ngOnInit();
+      console.log("refreshou")
     }, 10000);
   }
 }
