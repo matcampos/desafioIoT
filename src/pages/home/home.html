@@ -60,7 +60,7 @@
               <ion-item-sliding class="itemSliding" #item>
                 <ion-item>
                   <ion-icon *ngIf="status == 'Disponível'" class="imgToilet-happy" name="happy"></ion-icon>
-                  <ion-icon *ngIf="status == 'Ocupado'" class="imgToilet-warning" name="warning"></ion-icon>
+                  <ion-icon *ngIf="status == 'Ocupado' && minutes < 15" class="imgToilet-warning" name="warning"></ion-icon>
                   <ion-icon *ngIf="status == 'Ocupado' && minutes > 15 && minutes < 30" class="imgToilet" name="icon-poo"></ion-icon>
                   <ion-icon *ngIf="status == 'Ocupado' && minutes > 30" class="imgToilet-death" name="icon-skull"></ion-icon>
 

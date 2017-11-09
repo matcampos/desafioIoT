@@ -59,7 +59,7 @@ export class HomePage implements OnInit {
       dateNow = dateNow - (Number.parseInt(this.hours) * 60);
     }
     //Show the first characters of minutes on the view
-    this.minutes = dateNow.toFixed(0);
+
 
     if (info.available == true) {
       this.status = "Disponível";
