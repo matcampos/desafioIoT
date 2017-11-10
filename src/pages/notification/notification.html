@@ -1,0 +1,29 @@
+<ion-header>
+    <ion-navbar color="orangeFC">
+        <ion-title>
+            Notificar Problema
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-list>
+        <ion-label>Qual o problema?</ion-label>
+        <ion-item>
+            <ion-select [(ngModel)]="toiletProblem" interface="action-sheet" (ionChange)="itemSelected(toiletProblem)">
+                <ion-option value="" selected> Selecione...</ion-option>
+                <ion-option *ngFor="let problem of problems" [value]="problem" selected> {{ problem }}</ion-option>
+            </ion-select>
+        </ion-item>
+    </ion-list>
+    
+    
+    <ion-label [hidden]="othersSelected">Descrever Problema</ion-label>
+    <ion-item  [hidden]="othersSelected">
+        <ion-input [(ngModel)]="problemDesc" type="text" id="problemDesc" placeholder="Descreva o problema"></ion-input>
+    </ion-item>
+    
+    <button ion-button color="secondary" (click)="reportProblem(item)">Notificar</button>
+
+</ion-content>

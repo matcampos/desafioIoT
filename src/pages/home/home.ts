@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
-import { NavController } from 'ionic-angular';
-
+import { NavController, NavParams } from 'ionic-angular';
+import { NotificationPage } from '../notification/notification';
 
 @Component({
   selector: 'page-home',
@@ -10,7 +10,7 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage implements OnInit {
 
-  constructor(public navCtrl: NavController, public http: Http) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
   }
   data
   data1 = { "available": true, "timestamp": 310065830 };
@@ -18,9 +18,9 @@ export class HomePage implements OnInit {
   showContent: boolean = false;
   status: string;
   tempo: string;
+  toilet: string;
 
-
- ngOnInit() {
+  ngOnInit() {
     this.showContent = false;
       this.http
         .get('https://raspbarry-78187.firebaseio.com/toilets.json')
@@ -65,5 +65,9 @@ export class HomePage implements OnInit {
       this.doRefresh(refresher);
       console.log('esperou, atualizou');
     }, 10000);
+  }
+
+  unread(toilet){
+    this.navCtrl.push(NotificationPage, {param:toilet});
   }
 }
