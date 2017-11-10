@@ -6,9 +6,9 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding (load)="autoRefresh()">
   <ion-refresher (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content pullingIcon="arrow-dropdown" pullingText="Puxe para recarregar" refreshingSpinner="circles" refreshingText="Recarregando...">
+    <ion-refresher-content pullingIcon="icon-poo" pullingText="Puxe para recarregar" refreshingSpinner="circles" refreshingText="Recarregando...">
     </ion-refresher-content>
   </ion-refresher>
   <ion-grid>
@@ -60,22 +60,23 @@
               <ion-item-sliding class="itemSliding" #item>
                 <ion-item>
                   <ion-icon *ngIf="status == 'Disponível'" class="imgToilet-happy" name="happy"></ion-icon>
-                  <ion-icon *ngIf="status == 'Ocupado' && data1.timestamp < 1500000000 " class="imgToilet-warning" name="warning"></ion-icon>
-                  <ion-icon *ngIf="status == 'Ocupado' && data1.timestamp > 1500000000 && data1.timestamp < 3000000000" class="imgToilet"
-                    name="icon-poo"></ion-icon>
-                  <ion-icon *ngIf="status == 'Ocupado' && data1.timestamp > 3000000000" class="imgToilet-death" name="icon-skull"></ion-icon>
+                  <ion-icon *ngIf="status == 'Ocupado' && minutes < 15" class="imgToilet-warning" name="warning"></ion-icon>
+                  <ion-icon *ngIf="status == 'Ocupado' && minutes > 15 && minutes < 30" class="imgToilet" name="icon-poo"></ion-icon>
+                  <ion-icon *ngIf="status == 'Ocupado' && minutes > 30" class="imgToilet-death" name="icon-skull"></ion-icon>
 
                   <ul *ngIf="status == 'Ocupado'">
                     <li> Banheiro Corinthians </li>
                     <li class="li"> {{status}} há </li>
-                    <li class="li li2">X</li>
+                    <li *ngIf="hours > 0" class="li li2">{{hours}}</li>
+                    <li *ngIf="hours > 0" class="li li2"> horas e </li>
+                    <li class="li li2">{{minutes}}</li>
                     <li class="li li2">minutos</li>
                   </ul>
 
                   <ul *ngIf="status == 'Disponível'">
-                      <li> Banheiro Corinthians </li>
-                      <li class="li"> {{status}}  </li>
-                    </ul>
+                    <li> Banheiro Corinthians </li>
+                    <li class="li"> {{status}} </li>
+                  </ul>
                 </ion-item>
 
                 <ion-item-options side="right">
@@ -89,7 +90,7 @@
                   <ion-icon class="imgToilet" name="icon-poo"></ion-icon>
                   <ul>
                     <li> Banheiro Palmeiras</li>
-                    
+
                     <li class="li">Ocupado há</li>
                     <li class="li li2">16</li>
                     <li class="li li2">minutos</li>
@@ -106,7 +107,7 @@
                   <ion-icon class="imgToilet-warning" name="warning"></ion-icon>
                   <ul>
                     <li> Banheiro Santos</li>
-                    
+
                     <li class="li">Ocupado há</li>
                     <li class="li li2">10</li>
                     <li class="li li2">minutos</li>
@@ -123,7 +124,7 @@
                   <ion-icon class="imgToilet-death" name="icon-skull"></ion-icon>
                   <ul>
                     <li> Banheiro São Paulo</li>
-                    
+
                     <li class="li">Ocupado há</li>
                     <li class="li li2">32</li>
                     <li class="li li2">minutos</li>
@@ -140,7 +141,7 @@
                   <ion-icon class="imgToilet" name="icon-poo"></ion-icon>
                   <ul>
                     <li> Banheiro Flamengo</li>
-                    
+
                     <li class="li">Ocupado há</li>
                     <li class="li li2">22</li>
                     <li class="li li2">minutos</li>
@@ -157,7 +158,7 @@
                   <ion-icon class="imgToilet" name="icon-poo"></ion-icon>
                   <ul>
                     <li> Banheiro Fluminense</li>
-                    
+
                     <li class="li">Ocupado há</li>
                     <li class="li li2">22</li>
                     <li class="li li2">minutos</li>
@@ -174,7 +175,7 @@
                   <ion-icon class="imgToilet" name="icon-poo"></ion-icon>
                   <ul>
                     <li> Banheiro Vasco</li>
-                    
+
                     <li class="li">Ocupado há</li>
                     <li class="li li2">22</li>
                     <li class="li li2">minutos</li>
@@ -191,7 +192,7 @@
                   <ion-icon class="imgToilet" name="icon-poo"></ion-icon>
                   <ul>
                     <li> Banheiro Botafogo</li>
-                    
+
                     <li class="li">Ocupado há</li>
                     <li class="li li2">22</li>
                     <li class="li li2">minutos</li>
@@ -209,7 +210,7 @@
                   <ion-icon class="imgToilet" name="icon-poo"></ion-icon>
                   <ul>
                     <li> Banheiro Cruzeiro</li>
-                    
+
                     <li class="li">Ocupado há</li>
                     <li class="li li2">22</li>
                     <li class="li li2">minutos</li>
@@ -226,7 +227,7 @@
                   <ion-icon class="imgToilet" name="icon-poo"></ion-icon>
                   <ul>
                     <li> Banheiro Atlético Mineiro</li>
-                    
+
                     <li class="li">Ocupado há</li>
                     <li class="li li2">22</li>
                     <li class="li li2">minutos</li>
@@ -243,7 +244,7 @@
                   <ion-icon class="imgToilet" name="icon-poo"></ion-icon>
                   <ul>
                     <li> Banheiro Internacional</li>
-                    
+
                     <li class="li">Ocupado há</li>
                     <li class="li li2">22</li>
                     <li class="li li2">minutos</li>
@@ -260,7 +261,7 @@
                   <ion-icon class="imgToilet" name="icon-poo"></ion-icon>
                   <ul>
                     <li> Banheiro Grêmio</li>
-                    
+
                     <li class="li">Ocupado há</li>
                     <li class="li li2">22</li>
                     <li class="li li2">minutos</li>

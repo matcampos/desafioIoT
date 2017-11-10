@@ -40,11 +40,10 @@ export class NotificationPage implements OnInit {
     }
     
     reportProblem(item){
-        let recipient: string = "rafaelpfer@hotmail.com";
+        let recipient: string = "contato@fcamara.com.br";
         let subject: string = this.param;
         let message: string;
-
-        if (this.selectedItem == ""){
+        if (this.selectedItem == null){
             let toast = this.toastCtrl.create({
                 message: 'Selecione um problema!',
                 duration: 3000,
