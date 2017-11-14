@@ -1,15 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { Adal4Service } from 'adal-angular4';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
-export class HomePage {
+export class HomePage implements OnInit {
   
-  constructor(public navCtrl: NavController) {
+  constructor(
+    public navCtrl: NavController,
+    private adalService: Adal4Service) {
 
   }
+
+  ngOnInit() {
+    // this.adalService.handleWindowCallback();
+  }
+
   a = 0;
   b = 0;
   c = 0;
@@ -61,4 +69,9 @@ export class HomePage {
   onClick12(){
     this.l = Math.floor(Math.random() * 4);
   }
+
+
+  // logout() {
+  //   this.adalService.logOut();
+  // }
 }
