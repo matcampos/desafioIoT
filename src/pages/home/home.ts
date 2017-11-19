@@ -1,73 +1,93 @@
 import { Component, OnInit } from '@angular/core';
+import { Http } from '@angular/http';
+import 'rxjs/add/operator/map';
 import { NavController } from 'ionic-angular';
-import { Adal4Service } from 'adal-angular4';
+import * as moment from 'moment';
+moment.locale('pt-BR');
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage implements OnInit {
-  
-  constructor(
-    public navCtrl: NavController,
-    private adalService: Adal4Service) {
 
+  constructor(public navCtrl: NavController, public navParams: NavParams, public http: Http) {
   }
+  data
+  data1 = { "available": true, "timestamp": 310065830 };
+  data2 = { "available": true, "timestamp": 1518065830 };
+  actualDate: Date;
+  dateToilet: Date;
+  showContent: boolean = false;
+  status: string;
+  tempo: string;
+  hours: string;
+  minutes: string;
 
   ngOnInit() {
-    // this.adalService.handleWindowCallback();
+    this.showContent = false;
+    this.http
+      .get('https://raspbarry-78187.firebaseio.com/toilets.json')
+      .subscribe(res => {
+        this.data = res;
+        console.log(this.data);
+        this.data = JSON.parse(this.data._body);
+        console.log(this.data);
+        this.aionViewDidLoad(this.data.toilet1);
+        this.showContent = true;
+      }, err => { console.log(err) })
+    this.autoRefresh();
   }
 
-  a = 0;
-  b = 0;
-  c = 0;
-  d = 0;
-  e = 0;
-  f = 0;
-  g = 0;
-  h = 0;
-  i = 0;
-  j = 0;
-  k = 0;
-  l = 0;
+  aionViewDidLoad(info) {
+    // Actual date
+    this.actualDate = moment().toDate();
+    // Bathroom time 
+    var dateToilet = new Date(0); // The 0 there is the key, which sets the date to the epoch
+    dateToilet.setUTCSeconds(info.timestamp);
+    //Subtract actualDate - dateToilet
+    var calcTime = Date.parse(this.actualDate.toString()) - Date.parse(dateToilet.toString());
+    //Calculating hours
+    let calcHours: number = (calcTime / 1000 / 60 / 60) - 3;
+    console.log(calcHours);
+    //Calculating minutes
+    var dateNow = 60 * calcHours;
+    //Show the first characters of hour on the view
+    this.hours = calcHours.toString().substring(0, calcHours.toString().indexOf("."));
+    
+    if (calcHours > 1) {
+      dateNow = dateNow - (Number.parseInt(this.hours) * 60);
+    }
+    //Show the first characters of minutes on the view
 
-  color = [["secondary","danger","danger","darkFC"],["secondary","danger","danger","darkFC"],["secondary","danger","danger","darkFC"],["secondary","danger","danger","darkFC"],["secondary","danger","danger","darkFC"],["secondary","danger","danger","darkFC"],["secondary","danger","danger","darkFC"],["secondary","danger","danger","darkFC"],["secondary","danger","danger","darkFC"],["secondary","danger","danger","darkFC"],["secondary","danger","danger","darkFC"],["secondary","danger","danger","darkFC"]];
-  icon = [["happy","lock","warning","medkit"],["happy","lock","warning","medkit"],["happy","lock","warning","medkit"],["happy","lock","warning","medkit"],["happy","lock","warning","medkit"],["happy","lock","warning","medkit"],["happy","lock","warning","medkit"],["happy","lock","warning","medkit"],["happy","lock","warning","medkit"],["happy","lock","warning","medkit"],["happy","lock","warning","medkit"],["happy","lock","warning","medkit"]];
-  onClick(){
-    this.a = Math.floor(Math.random() * 4);
+
+    if (info.available == true) {
+      this.status = "Disponível";
+    }
+    else {
+      this.status = "Ocupado";
+    }
   }
-  onClick2(){
-    this.b = Math.floor(Math.random() * 4);
+
+  doRefresh(refresher) {
+    this.ngOnInit();
+    console.log('Begin async operation', refresher);
+
+    setTimeout(() => {
+      console.log('Async operation has ended');
+      refresher.complete();
+    }, 500);
   }
-  onClick3(){
-    this.c = Math.floor(Math.random() * 4);
+
+  autoRefresh() {
+    setTimeout(() => {
+      this.ngOnInit();
+      console.log("refreshou")
+    }, 10000);
   }
-  onClick4(){
-    this.d = Math.floor(Math.random() * 4);
-  }
-  onClick5(){
-    this.e = Math.floor(Math.random() * 4);
-  }
-  onClick6(){
-    this.f = Math.floor(Math.random() * 4);
-  }
-  onClick7(){
-    this.g = Math.floor(Math.random() * 4);
-  }
-  onClick8(){
-    this.h = Math.floor(Math.random() * 4);
-  }
-  onClick9(){
-    this.i = Math.floor(Math.random() * 4);
-  }
-  onClick10(){
-    this.j = Math.floor(Math.random() * 4);
-  }
-  onClick11(){
-    this.k = Math.floor(Math.random() * 4);
-  }
-  onClick12(){
-    this.l = Math.floor(Math.random() * 4);
+
+  unread(toilet){
+    this.navCtrl.push(NotificationPage, {param:toilet});
   }
 
 

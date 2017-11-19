@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Adal4Service } from 'adal-angular4';
 import { HomePage } from '../home/home';
-// import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'page-login',

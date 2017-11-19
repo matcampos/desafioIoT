@@ -1,2 +1,139 @@
 page-home {
 }
+
+.itemLegend{
+    height: 30px;
+    margin-bottom:10px;
+    padding-top:7px;
+    border-radius:2px;
+    box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.45);
+    width: 100%;
+}
+
+
+.itemMap{
+    padding:3px;
+    font-family: Verdana, Tahoma, sans-serif;
+    color:white;
+
+}
+
+ul{
+    list-style-type: none;
+}
+
+.imgToilet{
+    width: 70px;
+    height:70px;
+    text-align: center;
+    padding-top: 7px;
+    float:left;
+    margin-right:20px;
+    border-radius:50%;
+    font-size:50px;
+    background-color:#552B0A;
+    color:white;
+}
+
+.imgToilet-happy{
+    width: 70px;
+    height:70px;
+    text-align: center;
+    padding-top: 7px;
+    float:left;
+    margin-right:20px;
+    border-radius:50%;
+    font-size:50px;
+    background-color:#32db64;
+    color:white;
+}
+
+.imgToilet-warning{
+    width: 70px;
+    height:70px;
+    text-align: center;
+    padding-top: 3px;
+    float:left;
+    margin-right:20px;
+    border-radius:50%;
+    font-size:50px;
+    background-color:rgb(255, 61, 61);
+    color:white;
+}
+
+.imgToilet-death{
+    width: 70px;
+    height:70px;
+    text-align: center;
+    padding-top: 10px;
+    float:left;
+    margin-right:20px;
+    border-radius:50%;
+    font-size:50px;
+    background-color:#272c33;
+    color:white;
+}
+
+.itemSliding{
+    border-bottom: solid 1px #ccc;
+}
+
+.time{
+    margin-top:-55px;
+    clear:both;
+    float:right;
+    display: list-item;
+}
+
+.li{
+    display: inline;
+  
+}
+
+
+
+
+
+@media (max-width:330px){
+    li{
+        font-size: 8px;
+    }
+    .li{
+        display: inherit;
+      
+    }
+    .li2{
+        display:inline;
+    }
+    .itemLegend{
+     font-size:10px;
+    }
+}
+@media (min-width:331px)and(max-width:350px){
+    li{
+        font-size: 11px;
+    }
+    .li{
+        display: inherit;
+      
+    }
+    .li2{
+        display:inline;
+    }
+    .itemLegend{
+     font-size:10px;
+    }
+}
+
+@media (min-width:351px) and (max-width: 400px){
+    li{
+        font-size: 13px;
+    }
+    .li{
+        display: inherit;
+      
+    }
+    .li2{
+        display:inline;
+    }
+}
