@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams  } from 'ionic-angular';
 import * as moment from 'moment';
+import { NotificationPage } from '../notification/notification';
 moment.locale('pt-BR');
 
 @Component({

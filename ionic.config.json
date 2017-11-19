@@ -2,7 +2,5 @@
   "name": "DesafioIoT",
   "app_id": "",
   "type": "ionic-angular",
-  "integrations": {},
-  "typescript": true,
-  "v2": true
+  "integrations": {}
 }
