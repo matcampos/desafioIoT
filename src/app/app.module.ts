@@ -38,7 +38,6 @@ import { Adal4Service, Adal4HTTPService } from 'adal-angular4';
       useFactory: Adal4HTTPService.factory,
       deps: [HttpModule, Adal4Service]
     },
-    Http,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
