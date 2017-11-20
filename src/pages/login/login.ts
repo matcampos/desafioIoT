@@ -14,23 +14,34 @@ export class LoginPage {
     private adalService: Adal4Service) {
     }
     
+    token: any;
+    
     ngOnInit() {
-      let token = sessionStorage.getItem("adal.idtoken");
-      if(token) {
+      this.token = sessionStorage.getItem("adal.idtoken");
+      if(this.token) {
         this.navCtrl.setRoot(HomePage);
       }
     }
 
-    // ionViewDidEnter() {
-    //   this.adalService.handleWindowCallback();
-    //   this.adalService.loginInProgress();
-    // }
-    
-    loginOffice365() {
+    ionViewDidEnter() {
+      this.teste()
+      .then(res => console.log(res))
+      .catch(erro => console.log(erro));
+    }
+
+    async teste() {
+      let success;
+
       this.adalService.handleWindowCallback();
       if (!this.adalService.userInfo.authenticated) {
-        this.adalService.login();
-      }
-      
+        success = await this.adalService.login();
+      } 
+      return success;
+    }
+
+    loginOffice365() {
+        this.teste()
+        .then(res => console.log(res))
+        .catch(erro => console.log(erro));
     }
 }
