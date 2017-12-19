@@ -7,7 +7,7 @@ import { LoginPage } from '../pages/login/login';
 
 const config: adal.Config = {
     tenant: 'fcamara.com.br',
-    clientId: '89ac44d9-c1c9-40e5-b747-946dd68c2098',
+    clientId: '254d3715-51c8-4d72-a65a-af7c716563e2',
     redirectUri: window.location.origin + '/',
     postLogoutRedirectUri: window.location.origin + '/'
 }
