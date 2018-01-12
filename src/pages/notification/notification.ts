@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams, ToastController} from 'ionic-angular';
 import { Http } from '@angular/http';
-import { EmailComponent } from './email-component';
-
+import { EmailService } from './email-service';
+import { EmailModel } from '../../models/email.model';
 @Component({
     selector: 'page-notification',
     templateUrl: 'notification.html'
@@ -14,7 +14,8 @@ export class NotificationPage implements OnInit {
     constructor(private navCtrl: NavController,
                 private navParams: NavParams ,
                 private http: Http,
-                private toastCtrl: ToastController) 
+                private toastCtrl: ToastController,
+                private sendEmailService:EmailService) 
     {
         this.param = navParams.get("param");
     }
@@ -24,7 +25,7 @@ export class NotificationPage implements OnInit {
     problems: Array<string> = [ "Sem papel", "Sem sabonete", "Sem luz", "Com vazamento", "Outro" ];
     selectedItem: String;
     othersSelected: boolean = true;
-    sendEmailComponent: EmailComponent = new EmailComponent(this.http);
+    emailModel: EmailModel = new EmailModel();
 
     ngOnInit() { 
     }
@@ -36,49 +37,30 @@ export class NotificationPage implements OnInit {
         } else {
             this.othersSelected = true;            
         }
-        console.log(item);
+        // console.log(item);
     }
     
-    reportProblem(item){
-        let recipient: string = "contato@fcamara.com.br";
-        let subject: string = this.param;
-        let message: string;
-        if (this.selectedItem == null){
-            let toast = this.toastCtrl.create({
-                message: 'Selecione um problema!',
-                duration: 3000,
-                position: 'top'
-            });
-            toast.present();
-        } else if (this.selectedItem == "Outro"){
-            if(this.problemDesc !== ""){
-                message = this.problemDesc;
-                this.sendEmailComponent.send(recipient, subject, message);
-                
-                let toast = this.toastCtrl.create({
-                    message: 'Problema notificado com sucesso!',
-                    duration: 3000,
-                    position: 'top'
-                });
-                toast.present(); 
-            } else {
-                let toast = this.toastCtrl.create({
-                    message: 'Preencha a descrição do problema!',
-                    duration: 3000,
-                    position: 'top'
-                });
-                toast.present();
-            }
-        } else {    
-            message = "O banheiro está " + this.selectedItem.toLowerCase();
-            this.sendEmailComponent.send(recipient, subject, message);
-           
-            let toast = this.toastCtrl.create({
-                message: 'Problema notificado com sucesso!',
-                duration: 3000,
-                position: 'top'
-            });
-            toast.present();
-        }
+
+    notifyFC() {
+    this.emailModel.to = "matheus.campos@fcamara.com.br";
+    this.emailModel.subject = "Report de "+localStorage.getItem('userName');
+    if(this.othersSelected == true){
+        this.emailModel.text = localStorage.getItem('userName')+" reportou que o "+this.param+" está "+this.selectedItem;
+    }else{
+        this.emailModel.text = localStorage.getItem('userName')+" reportou a seguinte mensagem no "+this.param+": "+this.problemDesc;
     }
+    this.sendEmailService.send(this.emailModel)
+        .subscribe(res => {
+            console.log(res);
+        }, error => {
+            console.log(error);
+        })
+
+        let toast = this.toastCtrl.create({
+            message: 'Problema notificado com sucesso!',
+            duration: 3000,
+            position: 'top'
+        });
+        toast.present();
+  }
 }

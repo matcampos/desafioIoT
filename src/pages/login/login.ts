@@ -31,11 +31,14 @@ export class LoginPage {
 
     async teste() {
       let success;
-
+      let userInfo
       this.adalService.handleWindowCallback();
       if (!this.adalService.userInfo.authenticated) {
         success = await this.adalService.login();
       } 
+      // console.log(this.adalService.userInfo)
+      localStorage.setItem('userName',this.adalService.userInfo.profile.name );
+      localStorage.setItem('userEmail',this.adalService.userInfo.username );
       return success;
     }
 
