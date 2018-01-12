@@ -61,8 +61,8 @@
                 <ion-item>
                   <ion-icon *ngIf="status[0] == 'Disponível'" class="imgToilet-happy" name="happy"></ion-icon>
                   <ion-icon *ngIf="status[0] == 'Ocupado' && minutes[0] < 15" class="imgToilet-warning" name="warning"></ion-icon>
-                  <ion-icon *ngIf="status[0] == 'Ocupado' && minutes[0] > 15 && minutes[0] < 30" class="imgToilet" name="icon-poo"></ion-icon>
-                  <ion-icon *ngIf="status[0] == 'Ocupado' && minutes[0] > 30" class="imgToilet-death" name="icon-skull"></ion-icon>
+                  <ion-icon *ngIf="status[0] == 'Ocupado' && minutes[0] >= 15 && minutes[0] < 30" class="imgToilet" name="icon-poo"></ion-icon>
+                  <ion-icon *ngIf="status[0] == 'Ocupado' && minutes[0] >= 30" class="imgToilet-death" name="icon-skull"></ion-icon>
 
                   <ul *ngIf="status[0] == 'Ocupado'">
                     <li> Banheiro Corinthians </li>

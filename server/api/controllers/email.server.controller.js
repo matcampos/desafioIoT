@@ -16,7 +16,7 @@ let transporter = nodemailer.createTransport(
 
 exports.send = (req, res) => {
     let message = {
-        from: 'FCamara <hap-in@fcamara.com.br>',
+        from: 'FCamara <e-mail@fcamara.com.br>',
         to: req.body.to,
         subject: req.body.subject,
         text: req.body.text
