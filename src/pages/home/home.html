@@ -1,12 +1,12 @@
-<ion-header>
+<!-- <ion-header>
   <ion-navbar color="orangeFC">
     <ion-title>
       Banheiros
     </ion-title>
   </ion-navbar>
-</ion-header>
+</ion-header> -->
 
-<ion-content padding (load)="autoRefresh()">
+<ion-content padding class="cards-bathroom" (load)="autoRefresh()">
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content pullingIcon="icon-poo" pullingText="Puxe para recarregar" refreshingSpinner="circles" refreshingText="Recarregando...">
     </ion-refresher-content>
@@ -61,16 +61,17 @@
                 <ion-item>
                   <ion-icon *ngIf="status[0] == 'Disponível'" class="imgToilet-happy" name="happy"></ion-icon>
                   <ion-icon *ngIf="status[0] == 'Ocupado' && minutes[0] < 15" class="imgToilet-warning" name="warning"></ion-icon>
-                  <ion-icon *ngIf="status[0] == 'Ocupado' && minutes[0] > 15 && minutes[0] < 30" class="imgToilet" name="icon-poo"></ion-icon>
-                  <ion-icon *ngIf="status[0] == 'Ocupado' && minutes[0] > 30" class="imgToilet-death" name="icon-skull"></ion-icon>
+                  <ion-icon *ngIf="status[0] == 'Ocupado' && minutes[0] >= 15 && minutes[0] < 30" class="imgToilet" name="icon-poo"></ion-icon>
+                  <ion-icon *ngIf="status[0] == 'Ocupado' && minutes[0] >= 30" class="imgToilet-death" name="icon-skull"></ion-icon>
 
                   <ul *ngIf="status[0] == 'Ocupado'">
                     <li> Banheiro Corinthians </li>
-                    <li class="li"> {{status[0]}} há </li>
-                    <li *ngIf="hours[0] > 0" class="li li2">{{hours[0]}}</li>
+                    <li class="li"> {{status[0]}}</li>
+                    <li *ngIf="hours[0] > 0" class="li li2"> há {{hours[0]}}</li>
                     <li *ngIf="hours[0] > 0" class="li li2"> horas e </li>
-                    <li class="li li2">{{minutes[0]}}</li>
-                    <li class="li li2">minutos</li>
+                    <li class="li li2" *ngIf="minutes[0] >= 1"> há {{minutes[0]}}</li>
+                    <li class="li li2" *ngIf="minutes[0] >= 1 && minutes [0]<2">minuto</li>
+                    <li class="li li2" *ngIf="minutes[0] >= 2">minutos</li>
                   </ul>
 
                   <ul *ngIf="status[0] == 'Disponível'">
@@ -88,16 +89,17 @@
                 <ion-item>
                   <ion-icon *ngIf="status[1] == 'Disponível'" class="imgToilet-happy" name="happy"></ion-icon>
                   <ion-icon *ngIf="status[1] == 'Ocupado' && minutes[1] < 15" class="imgToilet-warning" name="warning"></ion-icon>
-                  <ion-icon *ngIf="status[1] == 'Ocupado' && minutes[1] > 15 && minutes[1] < 30" class="imgToilet" name="icon-poo"></ion-icon>
-                  <ion-icon *ngIf="status[1] == 'Ocupado' && minutes[1] > 30" class="imgToilet-death" name="icon-skull"></ion-icon>
+                  <ion-icon *ngIf="status[1] == 'Ocupado' && minutes[1] >= 15 && minutes[1] < 30" class="imgToilet" name="icon-poo"></ion-icon>
+                  <ion-icon *ngIf="status[1] == 'Ocupado' && minutes[1] >= 30" class="imgToilet-death" name="icon-skull"></ion-icon>
 
                   <ul *ngIf="status[1] == 'Ocupado'">
                     <li> Banheiro Santos </li>
-                    <li class="li"> {{status[1]}} há </li>
-                    <li *ngIf="hours[1] > 0" class="li li2">{{hours[1]}}</li>
+                    <li class="li"> {{status[1]}}</li>
+                    <li *ngIf="hours[1] > 0" class="li li2"> há {{hours[1]}}</li>
                     <li *ngIf="hours[1] > 0" class="li li2"> horas e </li>
-                    <li class="li li2">{{minutes[1]}}</li>
-                    <li class="li li2">minutos</li>
+                    <li *ngIf="minutes[1] >= 1" class="li li2"> há {{minutes[1]}}</li>
+                    <li *ngIf="minutes[1] >= 1 && minutes [1]<2" class="li li2">minuto</li>
+                    <li *ngIf="minutes[1] >= 2" class="li li2">minutos</li>
                   </ul>
 
                   <ul *ngIf="status[1] == 'Disponível'">
@@ -107,7 +109,7 @@
                 </ion-item>
 
                 <ion-item-options side="right">
-                  <button ion-button color="danger" (click)="unread('Banheiro Corinthians')">Notificar Problema</button>
+                  <button ion-button color="danger" (click)="unread('Banheiro Santos')">Notificar Problema</button>
                 </ion-item-options>
               </ion-item-sliding>
 
@@ -115,16 +117,17 @@
                 <ion-item>
                   <ion-icon *ngIf="status[2] == 'Disponível'" class="imgToilet-happy" name="happy"></ion-icon>
                   <ion-icon *ngIf="status[2] == 'Ocupado' && minutes[2] < 15" class="imgToilet-warning" name="warning"></ion-icon>
-                  <ion-icon *ngIf="status[2] == 'Ocupado' && minutes[2] > 15 && minutes[2] < 30" class="imgToilet" name="icon-poo"></ion-icon>
+                  <ion-icon *ngIf="status[2] == 'Ocupado' && minutes[2] >= 15 && minutes[2] < 30" class="imgToilet" name="icon-poo"></ion-icon>
                   <ion-icon *ngIf="status[2] == 'Ocupado' && minutes[2] > 30" class="imgToilet-death" name="icon-skull"></ion-icon>
 
                   <ul *ngIf="status[2] == 'Ocupado'">
                     <li> Banheiro São Paulo </li>
-                    <li class="li"> {{status[2]}} há </li>
-                    <li *ngIf="hours[2] > 0" class="li li2">{{hours[2]}}</li>
+                    <li class="li"> {{status[2]}} </li>
+                    <li *ngIf="hours[2] > 0" class="li li2"> há {{hours[2]}}</li>
                     <li *ngIf="hours[2] > 0" class="li li2"> horas e </li>
-                    <li class="li li2">{{minutes[2]}}</li>
-                    <li class="li li2">minutos</li>
+                    <li class="li li2" *ngIf="minutes[2] >= 1"> há {{minutes[2]}}</li>
+                    <li class="li li2" *ngIf="minutes[2] >= 1 && minutes [2]<2">minuto</li>
+                    <li class="li li2" *ngIf="minutes[2] >= 2">minutos</li>
                   </ul>
 
                   <ul *ngIf="status[2] == 'Disponível'">
@@ -134,7 +137,7 @@
                 </ion-item>
 
                 <ion-item-options side="right">
-                  <button ion-button color="danger" (click)="unread('Banheiro Corinthians')">Notificar Problema</button>
+                  <button ion-button color="danger" (click)="unread('Banheiro São Paulo')">Notificar Problema</button>
                 </ion-item-options>
               </ion-item-sliding>
 
@@ -142,16 +145,17 @@
                 <ion-item>
                   <ion-icon *ngIf="status[3] == 'Disponível'" class="imgToilet-happy" name="happy"></ion-icon>
                   <ion-icon *ngIf="status[3] == 'Ocupado' && minutes[3] < 15" class="imgToilet-warning" name="warning"></ion-icon>
-                  <ion-icon *ngIf="status[3] == 'Ocupado' && minutes[3] > 15 && minutes[3] < 30" class="imgToilet" name="icon-poo"></ion-icon>
-                  <ion-icon *ngIf="status[3] == 'Ocupado' && minutes[3] > 30" class="imgToilet-death" name="icon-skull"></ion-icon>
+                  <ion-icon *ngIf="status[3] == 'Ocupado' && minutes[3] >= 15 && minutes[3] < 30" class="imgToilet" name="icon-poo"></ion-icon>
+                  <ion-icon *ngIf="status[3] == 'Ocupado' && minutes[3] >= 30" class="imgToilet-death" name="icon-skull"></ion-icon>
 
                   <ul *ngIf="status[3] == 'Ocupado'">
                     <li> Banheiro Palmeiras </li>
-                    <li class="li"> {{status[3]}} há </li>
-                    <li *ngIf="hours[3] > 0" class="li li2">{{hours[3]}}</li>
+                    <li class="li"> {{status[3]}}</li>
+                    <li *ngIf="hours[3] > 0" class="li li2"> há {{hours[3]}}</li>
                     <li *ngIf="hours[3] > 0" class="li li2"> horas e </li>
-                    <li class="li li2">{{minutes[3]}}</li>
-                    <li class="li li2">minutos</li>
+                    <li class="li li2" *ngIf="minutes[3] >= 1"> há {{minutes[3]}}</li>
+                    <li class="li li2" *ngIf="minutes[3] >= 1 && minutes [3]<2">minuto</li>
+                    <li class="li li2" *ngIf="minutes[3] >= 2">minutos</li>
                   </ul>
 
                   <ul *ngIf="status[3] == 'Disponível'">
@@ -161,172 +165,303 @@
                 </ion-item>
 
                 <ion-item-options side="right">
-                  <button ion-button color="danger" (click)="unread('Banheiro Corinthians')">Notificar Problema</button>
+                  <button ion-button color="danger" (click)="unread('Banheiro Palmeiras')">Notificar Problema</button>
                 </ion-item-options>
               </ion-item-sliding>
 
-              
 
 
-        
+
 
               <ion-item-sliding class="itemSliding" #item>
                 <ion-item>
-                  <ion-icon class="imgToilet-death" name="icon-skull"></ion-icon>
-                  <ul>
-                    <li> Banheiro São Paulo</li>
+                  <ion-icon *ngIf="status[4] == 'Disponível'" class="imgToilet-happy" name="happy"></ion-icon>
+                  <ion-icon *ngIf="status[4] == 'Ocupado' && minutes[4] < 15" class="imgToilet-warning" name="warning"></ion-icon>
+                  <ion-icon *ngIf="status[4] == 'Ocupado' && minutes[4] >= 15 && minutes[4] < 30" class="imgToilet" name="icon-poo"></ion-icon>
+                  <ion-icon *ngIf="status[4] == 'Ocupado' && minutes[4] >= 30" class="imgToilet-death" name="icon-skull"></ion-icon>
 
-                    <li class="li">Ocupado há</li>
-                    <li class="li li2">32</li>
-                    <li class="li li2">minutos</li>
+                  <ul *ngIf="status[4] == 'Ocupado'">
+                    <li> Banheiro Ponte preta </li>
+                    <li class="li"> {{status[4]}}</li>
+                    <li *ngIf="hours[4] > 0" class="li li2"> há {{hours[4]}}</li>
+                    <li *ngIf="hours[4] > 0" class="li li2"> horas e </li>
+                    <li class="li li2" *ngIf="minutes[4] >= 1"> há {{minutes[4]}}</li>
+                    <li class="li li2" *ngIf="minutes[4] >= 1 && minutes [4]<2">minuto</li>
+                    <li class="li li2" *ngIf="minutes[4] >= 2">minutos</li>
+                  </ul>
+
+                  <ul *ngIf="status[4] == 'Disponível'">
+                    <li> Banheiro Ponte preta </li>
+                    <li class="li"> {{status[4]}} </li>
                   </ul>
                 </ion-item>
 
                 <ion-item-options side="right">
-                  <button ion-button color ="danger" (click)="unread('Banheiro São Paulo')">Notificar Problema</button>
+                  <button ion-button color="danger" (click)="unread('Banheiro Ponte preta')">Notificar Problema</button>
                 </ion-item-options>
               </ion-item-sliding>
 
+
               <ion-item-sliding class="itemSliding" #item>
                 <ion-item>
-                  <ion-icon class="imgToilet" name="icon-poo"></ion-icon>
-                  <ul>
+                  <ion-icon *ngIf="status[5] == 'Disponível'" class="imgToilet-happy" name="happy"></ion-icon>
+                  <ion-icon *ngIf="status[5] == 'Ocupado' && minutes[5] < 15" class="imgToilet-warning" name="warning"></ion-icon>
+                  <ion-icon *ngIf="status[5] == 'Ocupado' && minutes[5] >= 15 && minutes[5] < 30" class="imgToilet" name="icon-poo"></ion-icon>
+                  <ion-icon *ngIf="status[5] == 'Ocupado' && minutes[5] >= 30" class="imgToilet-death" name="icon-skull"></ion-icon>
+
+                  <ul *ngIf="status[5] == 'Ocupado'">
                     <li> Banheiro Flamengo</li>
+                    <li class="li"> {{status[5]}}</li>
+                    <li *ngIf="hours[5] > 0" class="li li2"> há {{hours[5]}}</li>
+                    <li *ngIf="hours[5] > 0" class="li li2"> horas e </li>
+                    <li class="li li2" *ngIf="minutes[5] >= 1"> há {{minutes[5]}}</li>
+                    <li class="li li2" *ngIf="minutes[5] >= 1 && minutes [5]<2">minuto</li>
+                    <li class="li li2" *ngIf="minutes[5] >= 2">minutos</li>
+                  </ul>
 
-                    <li class="li">Ocupado há</li>
-                    <li class="li li2">22</li>
-                    <li class="li li2">minutos</li>
+                  <ul *ngIf="status[5] == 'Disponível'">
+                    <li> Banheiro Flamengo </li>
+                    <li class="li"> {{status[5]}} </li>
                   </ul>
                 </ion-item>
 
                 <ion-item-options side="right">
-                  <button ion-button color ="danger" (click)="unread('Banheiro Flamengo')">Notificar Problema</button>
+                  <button ion-button color="danger" (click)="unread('Banheiro Flamengo')">Notificar Problema</button>
                 </ion-item-options>
               </ion-item-sliding>
 
+
               <ion-item-sliding class="itemSliding" #item>
                 <ion-item>
-                  <ion-icon class="imgToilet" name="icon-poo"></ion-icon>
-                  <ul>
+                  <ion-icon *ngIf="status[6] == 'Disponível'" class="imgToilet-happy" name="happy"></ion-icon>
+                  <ion-icon *ngIf="status[6] == 'Ocupado' && minutes[6] < 15" class="imgToilet-warning" name="warning"></ion-icon>
+                  <ion-icon *ngIf="status[6] == 'Ocupado' && minutes[6] >= 15 && minutes[6] < 30" class="imgToilet" name="icon-poo"></ion-icon>
+                  <ion-icon *ngIf="status[6] == 'Ocupado' && minutes[6] >= 30" class="imgToilet-death" name="icon-skull"></ion-icon>
+
+                  <ul *ngIf="status[6] == 'Ocupado'">
                     <li> Banheiro Fluminense</li>
+                    <li class="li"> {{status[6]}}</li>
+                    <li *ngIf="hours[6] > 0" class="li li2"> há {{hours[6]}}</li>
+                    <li *ngIf="hours[6] > 0" class="li li2"> horas e </li>
+                    <li class="li li2" *ngIf="minutes[6] >= 1"> há {{minutes[6]}}</li>
+                    <li class="li li2" *ngIf="minutes[6] >= 1 && minutes [6]<2">minuto</li>
+                    <li class="li li2" *ngIf="minutes[6] >= 2">minutos</li>
+                  </ul>
 
-                    <li class="li">Ocupado há</li>
-                    <li class="li li2">22</li>
-                    <li class="li li2">minutos</li>
+                  <ul *ngIf="status[6] == 'Disponível'">
+                    <li> Banheiro Fluminense </li>
+                    <li class="li"> {{status[6]}} </li>
                   </ul>
                 </ion-item>
 
                 <ion-item-options side="right">
-                  <button ion-button color ="danger" (click)="unread('Banheiro Fluminense')">Notificar Problema</button>
+                  <button ion-button color="danger" (click)="unread('Banheiro Fluminense')">Notificar Problema</button>
                 </ion-item-options>
               </ion-item-sliding>
 
               <ion-item-sliding class="itemSliding" #item>
                 <ion-item>
-                  <ion-icon class="imgToilet" name="icon-poo"></ion-icon>
-                  <ul>
+                  <ion-icon *ngIf="status[7] == 'Disponível'" class="imgToilet-happy" name="happy"></ion-icon>
+                  <ion-icon *ngIf="status[7] == 'Ocupado' && minutes[7] < 15" class="imgToilet-warning" name="warning"></ion-icon>
+                  <ion-icon *ngIf="status[7] == 'Ocupado' && minutes[7] >= 15 && minutes[7] < 30" class="imgToilet" name="icon-poo"></ion-icon>
+                  <ion-icon *ngIf="status[7] == 'Ocupado' && minutes[7] >= 30" class="imgToilet-death" name="icon-skull"></ion-icon>
+
+                  <ul *ngIf="status[7] == 'Ocupado'">
                     <li> Banheiro Vasco</li>
+                    <li class="li"> {{status[7]}}</li>
+                    <li *ngIf="hours[7] > 0" class="li li2"> há {{hours[7]}}</li>
+                    <li *ngIf="hours[7] > 0" class="li li2"> horas e </li>
+                    <li class="li li2" *ngIf="minutes[7] >= 1"> há {{minutes[7]}}</li>
+                    <li class="li li2" *ngIf="minutes[7] >= 1 && minutes [7]<2">minuto</li>
+                    <li class="li li2" *ngIf="minutes[7] >= 2">minutos</li>
+                  </ul>
 
-                    <li class="li">Ocupado há</li>
-                    <li class="li li2">22</li>
-                    <li class="li li2">minutos</li>
+                  <ul *ngIf="status[7] == 'Disponível'">
+                    <li> Banheiro Vasco </li>
+                    <li class="li"> {{status[7]}} </li>
                   </ul>
                 </ion-item>
 
                 <ion-item-options side="right">
-                  <button ion-button color ="danger" (click)="unread('Banheiro Vasco')">Notificar Problema</button>
+                  <button ion-button color="danger" (click)="unread('Banheiro Vasco')">Notificar Problema</button>
                 </ion-item-options>
               </ion-item-sliding>
 
               <ion-item-sliding class="itemSliding" #item>
                 <ion-item>
-                  <ion-icon class="imgToilet" name="icon-poo"></ion-icon>
-                  <ul>
+                  <ion-icon *ngIf="status[8] == 'Disponível'" class="imgToilet-happy" name="happy"></ion-icon>
+                  <ion-icon *ngIf="status[8] == 'Ocupado' && minutes[8] < 15" class="imgToilet-warning" name="warning"></ion-icon>
+                  <ion-icon *ngIf="status[8] == 'Ocupado' && minutes[8] >= 15 && minutes[8] < 30" class="imgToilet" name="icon-poo"></ion-icon>
+                  <ion-icon *ngIf="status[8] == 'Ocupado' && minutes[8] >= 30" class="imgToilet-death" name="icon-skull"></ion-icon>
+
+                  <ul *ngIf="status[8] == 'Ocupado'">
                     <li> Banheiro Botafogo</li>
-
-                    <li class="li">Ocupado há</li>
-                    <li class="li li2">22</li>
-                    <li class="li li2">minutos</li>
+                    <li class="li"> {{status[8]}}</li>
+                    <li *ngIf="hours[8] > 0" class="li li2"> há {{hours[8]}}</li>
+                    <li *ngIf="hours[8] > 0" class="li li2"> horas e </li>
+                    <li class="li li2" *ngIf="minutes[8] >= 1"> há {{minutes[8]}}</li>
+                    <li class="li li2" *ngIf="minutes[8] >= 1 && minutes [8]<2">minuto</li>
+                    <li class="li li2" *ngIf="minutes[8] >= 2">minutos</li>
                   </ul>
 
+                  <ul *ngIf="status[8] == 'Disponível'">
+                    <li> Banheiro Botafogo </li>
+                    <li class="li"> {{status[8]}} </li>
+                  </ul>
                 </ion-item>
 
                 <ion-item-options side="right">
-                  <button ion-button color ="danger" (click)="unread('Banheiro Botafogo')">Notificar Problema</button>
+                  <button ion-button color="danger" (click)="unread('Banheiro Botafogo')">Notificar Problema</button>
                 </ion-item-options>
               </ion-item-sliding>
 
+
               <ion-item-sliding class="itemSliding" #item>
                 <ion-item>
-                  <ion-icon class="imgToilet" name="icon-poo"></ion-icon>
-                  <ul>
+                  <ion-icon *ngIf="status[9] == 'Disponível'" class="imgToilet-happy" name="happy"></ion-icon>
+                  <ion-icon *ngIf="status[9] == 'Ocupado' && minutes[9] < 15" class="imgToilet-warning" name="warning"></ion-icon>
+                  <ion-icon *ngIf="status[9] == 'Ocupado' && minutes[9] >= 15 && minutes[9] < 30" class="imgToilet" name="icon-poo"></ion-icon>
+                  <ion-icon *ngIf="status[9] == 'Ocupado' && minutes[9] >= 30" class="imgToilet-death" name="icon-skull"></ion-icon>
+
+                  <ul *ngIf="status[9] == 'Ocupado'">
                     <li> Banheiro Cruzeiro</li>
+                    <li class="li"> {{status[9]}}</li>
+                    <li *ngIf="hours[9] > 0" class="li li2"> há {{hours[9]}}</li>
+                    <li *ngIf="hours[9] > 0" class="li li2"> horas e </li>
+                    <li class="li li2" *ngIf="minutes[9] >= 1"> há {{minutes[9]}}</li>
+                    <li class="li li2" *ngIf="minutes[9] >= 1 && minutes [9]<2">minuto</li>
+                    <li class="li li2" *ngIf="minutes[9] >= 2">minutos</li>
+                  </ul>
 
-                    <li class="li">Ocupado há</li>
-                    <li class="li li2">22</li>
-                    <li class="li li2">minutos</li>
+                  <ul *ngIf="status[9] == 'Disponível'">
+                    <li> Banheiro Cruzeiro </li>
+                    <li class="li"> {{status[9]}} </li>
                   </ul>
                 </ion-item>
 
                 <ion-item-options side="right">
-                  <button ion-button color ="danger" (click)="unread('Banheiro Cruzeiro')">Notificar Problema</button>
+                  <button ion-button color="danger" (click)="unread('Banheiro Cruzeiro')">Notificar Problema</button>
                 </ion-item-options>
               </ion-item-sliding>
 
               <ion-item-sliding class="itemSliding" #item>
                 <ion-item>
-                  <ion-icon class="imgToilet" name="icon-poo"></ion-icon>
-                  <ul>
+                  <ion-icon *ngIf="status[10] == 'Disponível'" class="imgToilet-happy" name="happy"></ion-icon>
+                  <ion-icon *ngIf="status[10] == 'Ocupado' && minutes[10] < 15" class="imgToilet-warning" name="warning"></ion-icon>
+                  <ion-icon *ngIf="status[10] == 'Ocupado' && minutes[10] >= 15 && minutes[10] < 30" class="imgToilet" name="icon-poo"></ion-icon>
+                  <ion-icon *ngIf="status[10] == 'Ocupado' && minutes[10] >= 30" class="imgToilet-death" name="icon-skull"></ion-icon>
+
+                  <ul *ngIf="status[10] == 'Ocupado'">
                     <li> Banheiro Atlético Mineiro</li>
+                    <li class="li"> {{status[10]}}</li>
+                    <li *ngIf="hours[10] > 0" class="li li2"> há {{hours[10]}}</li>
+                    <li *ngIf="hours[10] > 0" class="li li2"> horas e </li>
+                    <li class="li li2" *ngIf="minutes[10] >= 1"> há {{minutes[10]}}</li>
+                    <li class="li li2" *ngIf="minutes[10] >= 1 && minutes [10]<2">minuto</li>
+                    <li class="li li2" *ngIf="minutes[10] >= 2">minutos</li>
+                  </ul>
 
-                    <li class="li">Ocupado há</li>
-                    <li class="li li2">22</li>
-                    <li class="li li2">minutos</li>
+                  <ul *ngIf="status[10] == 'Disponível'">
+                    <li> Banheiro Atlético Mineiro </li>
+                    <li class="li"> {{status[10]}} </li>
                   </ul>
                 </ion-item>
 
                 <ion-item-options side="right">
-                  <button ion-button color ="danger" (click)="unread('Banheiro Atlético Mineiro')">Notificar Problema</button>
+                  <button ion-button color="danger" (click)="unread('Banheiro Atlético Mineiro')">Notificar Problema</button>
                 </ion-item-options>
               </ion-item-sliding>
+
 
               <ion-item-sliding class="itemSliding" #item>
                 <ion-item>
-                  <ion-icon class="imgToilet" name="icon-poo"></ion-icon>
-                  <ul>
-                    <li> Banheiro Internacional</li>
+                  <ion-icon *ngIf="status[11] == 'Disponível'" class="imgToilet-happy" name="happy"></ion-icon>
+                  <ion-icon *ngIf="status[11] == 'Ocupado' && minutes[11] < 15" class="imgToilet-warning" name="warning"></ion-icon>
+                  <ion-icon *ngIf="status[11] == 'Ocupado' && minutes[11] >= 15 && minutes[11] < 30" class="imgToilet" name="icon-poo"></ion-icon>
+                  <ion-icon *ngIf="status[11] == 'Ocupado' && minutes[11] >= 30" class="imgToilet-death" name="icon-skull"></ion-icon>
 
-                    <li class="li">Ocupado há</li>
-                    <li class="li li2">22</li>
-                    <li class="li li2">minutos</li>
-                  </ul>
-                </ion-item>
-
-                <ion-item-options side="right">
-                  <button ion-button color ="danger" (click)="unread('Banheiro Internacional')">Notificar Problema</button>
-                </ion-item-options>
-              </ion-item-sliding>
-
-              <ion-item-sliding #item>
-                <ion-item>
-                  <ion-icon class="imgToilet" name="icon-poo"></ion-icon>
-                  <ul>
+                  <ul *ngIf="status[11] == 'Ocupado'">
                     <li> Banheiro Grêmio</li>
+                    <li class="li"> {{status[11]}}</li>
+                    <li *ngIf="hours[11] > 0" class="li li2"> há {{hours[11]}}</li>
+                    <li *ngIf="hours[11] > 0" class="li li2"> horas e </li>
+                    <li class="li li2" *ngIf="minutes[11] >= 1"> há {{minutes[11]}}</li>
+                    <li class="li li2" *ngIf="minutes[11] >= 1 && minutes [11]<2">minuto</li>
+                    <li class="li li2" *ngIf="minutes[11] >= 2">minutos</li>
+                  </ul>
 
-                    <li class="li">Ocupado há</li>
-                    <li class="li li2">22</li>
-                    <li class="li li2">minutos</li>
+                  <ul *ngIf="status[11] == 'Disponível'">
+                    <li> Banheiro Grêmio </li>
+                    <li class="li"> {{status[11]}} </li>
                   </ul>
                 </ion-item>
 
                 <ion-item-options side="right">
-                  <button ion-button color ="danger" (click)="unread('Banheiro Grêmio')">Notificar Problema</button>
+                  <button ion-button color="danger" (click)="unread('Banheiro Grêmio')">Notificar Problema</button>
                 </ion-item-options>
               </ion-item-sliding>
+
+  
             </ion-list>
           </ion-card-content>
         </ion-card>
       </ion-col>
     </ion-row>
   </ion-grid>
+
+  <!-- <div class="holder">
+    <ul class="container">
+      <li class="hexa">
+        <div class="front">
+        </div>
+        <div class="back"></div>
+      </li>
+      <li class="hexa">
+        <div class="front"></div>
+        <div class="back"></div>
+      </li>
+      <li class="hexa">
+        <div class="front"></div>
+        <div class="back"></div>
+      </li>
+      <li class="hexa">
+        <div class="front"></div>
+        <div class="back"></div>
+      </li>
+      <li class="hexa">
+        <div class="front"></div>
+        <div class="back"></div>
+      </li>
+      <li class="hexa">
+        <div class="front"></div>
+        <div class="back"></div>
+      </li>
+      <li class="hexa">
+        <div class="front"></div>
+        <div class="back"></div>
+      </li>
+      <li class="hexa">
+        <div class="front"></div>
+        <div class="back"></div>
+      </li>
+      <li class="hexa">
+        <div class="front"></div>
+        <div class="back"></div>
+      </li>
+      <li class="hexa">
+        <div class="front"></div>
+        <div class="back"></div>
+      </li>
+      <li class="hexa">
+        <div class="front"></div>
+        <div class="back"></div>
+      </li>
+      <li class="hexa">
+        <div class="front"></div>
+        <div class="back"></div>
+      </li>
+    </ul>
+  </div> -->
+
+
 </ion-content>

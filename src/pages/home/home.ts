@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
-import { NavController, NavParams  } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import * as moment from 'moment';
 import { NotificationPage } from '../notification/notification';
+
 moment.locale('pt-BR');
 
 @Component({
@@ -20,10 +21,10 @@ export class HomePage implements OnInit {
   actualDate: Date;
   dateToilet: Date;
   showContent: boolean = false;
-  status: [string,string,string,string,string,string,string,string,string,string] = ["","","","","","","","","",""];
+  status: [string, string, string, string, string, string, string, string, string, string] = ["", "", "", "", "", "", "", "", "", ""];
   tempo: string;
-  hours: [string,string,string,string,string,string,string,string,string,string] = ["","","","","","","","","",""];
-  minutes: [string,string,string,string,string,string,string,string,string,string] =  ["","","","","","","","","",""];
+  hours: [string, string, string, string, string, string, string, string, string, string] = ["", "", "", "", "", "", "", "", "", ""];
+  minutes: [string, string, string, string, string, string, string, string, string, string] = ["", "", "", "", "", "", "", "", "", ""];
 
   ngOnInit() {
     this.showContent = false;
@@ -38,11 +39,19 @@ export class HomePage implements OnInit {
         this.aionViewDidLoad2(this.data.toilet2);
         this.aionViewDidLoad3(this.data.toilet3);
         this.aionViewDidLoad4(this.data.toilet4);
-        
+        this.aionViewDidLoad5(this.data.toilet5);
+        this.aionViewDidLoad6(this.data.toilet6);
+        this.aionViewDidLoad7(this.data.toilet7);
+        this.aionViewDidLoad8(this.data.toilet8);
+        this.aionViewDidLoad9(this.data.toilet9);
+        this.aionViewDidLoad10(this.data.toilet10);
+        this.aionViewDidLoad11(this.data.toilet11);
+        this.aionViewDidLoad12(this.data.toilet12);
+
         this.showContent = true;
       }, err => { console.log(err) })
-    this.autoRefresh();
-  
+
+
   }
 
   aionViewDidLoad1(info) {
@@ -60,7 +69,7 @@ export class HomePage implements OnInit {
     var dateNow = 60 * calcHours;
     //Show the first characters of hour on the view
     this.hours[0] = calcHours.toString().substring(0, calcHours.toString().indexOf("."));
-    
+
     if (calcHours > 1) {
       dateNow = dateNow - (Number.parseInt(this.hours[0]) * 60);
     }
@@ -73,6 +82,7 @@ export class HomePage implements OnInit {
     else {
       this.status[0] = "Ocupado";
     }
+    // console.log(this.status[0])
 
   }
   aionViewDidLoad2(info) {
@@ -90,7 +100,7 @@ export class HomePage implements OnInit {
     var dateNow = 60 * calcHours;
     //Show the first characters of hour on the view
     this.hours[1] = calcHours.toString().substring(0, calcHours.toString().indexOf("."));
-    
+
     if (calcHours > 1) {
       dateNow = dateNow - (Number.parseInt(this.hours[1]) * 60);
     }
@@ -120,7 +130,7 @@ export class HomePage implements OnInit {
     var dateNow = 60 * calcHours;
     //Show the first characters of hour on the view
     this.hours[2] = calcHours.toString().substring(0, calcHours.toString().indexOf("."));
-    
+
     if (calcHours > 1) {
       dateNow = dateNow - (Number.parseInt(this.hours[2]) * 60);
     }
@@ -150,7 +160,7 @@ export class HomePage implements OnInit {
     var dateNow = 60 * calcHours;
     //Show the first characters of hour on the view
     this.hours[3] = calcHours.toString().substring(0, calcHours.toString().indexOf("."));
-    
+
     if (calcHours > 1) {
       dateNow = dateNow - (Number.parseInt(this.hours[3]) * 60);
     }
@@ -165,12 +175,251 @@ export class HomePage implements OnInit {
     }
   }
 
+  aionViewDidLoad5(info) {
+    // Actual date
+    this.actualDate = moment().toDate();
+    // Bathroom time 
+    var dateToilet = new Date(0); // The 0 there is the key, which sets the date to the epoch
+    dateToilet.setUTCSeconds(info.timestamp);
+    //Subtract actualDate - dateToilet
+    var calcTime = Date.parse(this.actualDate.toString()) - Date.parse(dateToilet.toString());
+    //Calculating hours
+    let calcHours: number = (calcTime / 1000 / 60 / 60) - 3;
+    // console.log(calcHours);
+    //Calculating minutes
+    var dateNow = 60 * calcHours;
+    //Show the first characters of hour on the view
+    this.hours[4] = calcHours.toString().substring(0, calcHours.toString().indexOf("."));
+
+    if (calcHours > 1) {
+      dateNow = dateNow - (Number.parseInt(this.hours[4]) * 60);
+    }
+    //Show the first characters of minutes on the view
+    this.minutes[4] = dateNow.toFixed(0);
+
+    if (info.available == true) {
+      this.status[4] = "Disponível";
+    }
+    else {
+      this.status[4] = "Ocupado";
+    }
+  }
+
+  aionViewDidLoad6(info) {
+    // Actual date
+    this.actualDate = moment().toDate();
+    // Bathroom time 
+    var dateToilet = new Date(0); // The 0 there is the key, which sets the date to the epoch
+    dateToilet.setUTCSeconds(info.timestamp);
+    //Subtract actualDate - dateToilet
+    var calcTime = Date.parse(this.actualDate.toString()) - Date.parse(dateToilet.toString());
+    //Calculating hours
+    let calcHours: number = (calcTime / 1000 / 60 / 60) - 3;
+    // console.log(calcHours);
+    //Calculating minutes
+    var dateNow = 60 * calcHours;
+    //Show the first characters of hour on the view
+    this.hours[5] = calcHours.toString().substring(0, calcHours.toString().indexOf("."));
+
+    if (calcHours > 1) {
+      dateNow = dateNow - (Number.parseInt(this.hours[5]) * 60);
+    }
+    //Show the first characters of minutes on the view
+    this.minutes[5] = dateNow.toFixed(0);
+
+    if (info.available == true) {
+      this.status[5] = "Disponível";
+    }
+    else {
+      this.status[5] = "Ocupado";
+    }
+  }
+
+  aionViewDidLoad7(info) {
+    // Actual date
+    this.actualDate = moment().toDate();
+    // Bathroom time 
+    var dateToilet = new Date(0); // The 0 there is the key, which sets the date to the epoch
+    dateToilet.setUTCSeconds(info.timestamp);
+    //Subtract actualDate - dateToilet
+    var calcTime = Date.parse(this.actualDate.toString()) - Date.parse(dateToilet.toString());
+    //Calculating hours
+    let calcHours: number = (calcTime / 1000 / 60 / 60) - 3;
+    // console.log(calcHours);
+    //Calculating minutes
+    var dateNow = 60 * calcHours;
+    //Show the first characters of hour on the view
+    this.hours[6] = calcHours.toString().substring(0, calcHours.toString().indexOf("."));
+
+    if (calcHours > 1) {
+      dateNow = dateNow - (Number.parseInt(this.hours[6]) * 60);
+    }
+    //Show the first characters of minutes on the view
+    this.minutes[6] = dateNow.toFixed(0);
+
+    if (info.available == true) {
+      this.status[6] = "Disponível";
+    }
+    else {
+      this.status[6] = "Ocupado";
+    }
+  }
+
+  aionViewDidLoad8(info) {
+    // Actual date
+    this.actualDate = moment().toDate();
+    // Bathroom time 
+    var dateToilet = new Date(0); // The 0 there is the key, which sets the date to the epoch
+    dateToilet.setUTCSeconds(info.timestamp);
+    //Subtract actualDate - dateToilet
+    var calcTime = Date.parse(this.actualDate.toString()) - Date.parse(dateToilet.toString());
+    //Calculating hours
+    let calcHours: number = (calcTime / 1000 / 60 / 60) - 3;
+    // console.log(calcHours);
+    //Calculating minutes
+    var dateNow = 60 * calcHours;
+    //Show the first characters of hour on the view
+    this.hours[7] = calcHours.toString().substring(0, calcHours.toString().indexOf("."));
+
+    if (calcHours > 1) {
+      dateNow = dateNow - (Number.parseInt(this.hours[7]) * 60);
+    }
+    //Show the first characters of minutes on the view
+    this.minutes[7] = dateNow.toFixed(0);
+
+    if (info.available == true) {
+      this.status[7] = "Disponível";
+    }
+    else {
+      this.status[7] = "Ocupado";
+    }
+  }
+
+  aionViewDidLoad9(info) {
+    // Actual date
+    this.actualDate = moment().toDate();
+    // Bathroom time 
+    var dateToilet = new Date(0); // The 0 there is the key, which sets the date to the epoch
+    dateToilet.setUTCSeconds(info.timestamp);
+    //Subtract actualDate - dateToilet
+    var calcTime = Date.parse(this.actualDate.toString()) - Date.parse(dateToilet.toString());
+    //Calculating hours
+    let calcHours: number = (calcTime / 1000 / 60 / 60) - 3;
+    // console.log(calcHours);
+    //Calculating minutes
+    var dateNow = 60 * calcHours;
+    //Show the first characters of hour on the view
+    this.hours[8] = calcHours.toString().substring(0, calcHours.toString().indexOf("."));
+
+    if (calcHours > 1) {
+      dateNow = dateNow - (Number.parseInt(this.hours[8]) * 60);
+    }
+    //Show the first characters of minutes on the view
+    this.minutes[8] = dateNow.toFixed(0);
+
+    if (info.available == true) {
+      this.status[8] = "Disponível";
+    }
+    else {
+      this.status[8] = "Ocupado";
+    }
+  }
+
+  aionViewDidLoad10(info) {
+    // Actual date
+    this.actualDate = moment().toDate();
+    // Bathroom time 
+    var dateToilet = new Date(0); // The 0 there is the key, which sets the date to the epoch
+    dateToilet.setUTCSeconds(info.timestamp);
+    //Subtract actualDate - dateToilet
+    var calcTime = Date.parse(this.actualDate.toString()) - Date.parse(dateToilet.toString());
+    //Calculating hours
+    let calcHours: number = (calcTime / 1000 / 60 / 60) - 3;
+    // console.log(calcHours);
+    //Calculating minutes
+    var dateNow = 60 * calcHours;
+    //Show the first characters of hour on the view
+    this.hours[9] = calcHours.toString().substring(0, calcHours.toString().indexOf("."));
+
+    if (calcHours > 1) {
+      dateNow = dateNow - (Number.parseInt(this.hours[9]) * 60);
+    }
+    //Show the first characters of minutes on the view
+    this.minutes[9] = dateNow.toFixed(0);
+
+    if (info.available == true) {
+      this.status[9] = "Disponível";
+    }
+    else {
+      this.status[9] = "Ocupado";
+    }
+  }
+
+  aionViewDidLoad11(info) {
+    // Actual date
+    this.actualDate = moment().toDate();
+    // Bathroom time 
+    var dateToilet = new Date(0); // The 0 there is the key, which sets the date to the epoch
+    dateToilet.setUTCSeconds(info.timestamp);
+    //Subtract actualDate - dateToilet
+    var calcTime = Date.parse(this.actualDate.toString()) - Date.parse(dateToilet.toString());
+    //Calculating hours
+    let calcHours: number = (calcTime / 1000 / 60 / 60) - 3;
+    // console.log(calcHours);
+    //Calculating minutes
+    var dateNow = 60 * calcHours;
+    //Show the first characters of hour on the view
+    this.hours[10] = calcHours.toString().substring(0, calcHours.toString().indexOf("."));
+
+    if (calcHours > 1) {
+      dateNow = dateNow - (Number.parseInt(this.hours[10]) * 60);
+    }
+    //Show the first characters of minutes on the view
+    this.minutes[10] = dateNow.toFixed(0);
+
+    if (info.available == true) {
+      this.status[10] = "Disponível";
+    }
+    else {
+      this.status[10] = "Ocupado";
+    }
+  }
+
+  aionViewDidLoad12(info) {
+    // Actual date
+    this.actualDate = moment().toDate();
+    // Bathroom time 
+    var dateToilet = new Date(0); // The 0 there is the key, which sets the date to the epoch
+    dateToilet.setUTCSeconds(info.timestamp);
+    //Subtract actualDate - dateToilet
+    var calcTime = Date.parse(this.actualDate.toString()) - Date.parse(dateToilet.toString());
+    //Calculating hours
+    let calcHours: number = (calcTime / 1000 / 60 / 60) - 3;
+    // console.log(calcHours);
+    //Calculating minutes
+    var dateNow = 60 * calcHours;
+    //Show the first characters of hour on the view
+    this.hours[11] = calcHours.toString().substring(0, calcHours.toString().indexOf("."));
+
+    if (calcHours > 1) {
+      dateNow = dateNow - (Number.parseInt(this.hours[11]) * 60);
+    }
+    //Show the first characters of minutes on the view
+    this.minutes[11] = dateNow.toFixed(0);
+
+    if (info.available == true) {
+      this.status[11] = "Disponível";
+    }
+    else {
+      this.status[11] = "Ocupado";
+    }
+  }
   doRefresh(refresher) {
     this.ngOnInit();
-    console.log('Begin async operation', refresher);
+    // console.log('Begin async operation', refresher);
 
     setTimeout(() => {
-      console.log('Async operation has ended');
+      // console.log('Async operation has ended');
       refresher.complete();
     }, 500);
   }
@@ -178,13 +427,17 @@ export class HomePage implements OnInit {
   autoRefresh() {
     setTimeout(() => {
       this.ngOnInit();
-      console.log("refreshou")
+      // console.log("refreshou")
     }, 10000);
   }
 
-  unread(toilet){
-    this.navCtrl.push(NotificationPage, {param:toilet});
+  unread(toilet) {
+    this.navCtrl.push(NotificationPage, { param: toilet });
   }
+
+
+  
+
 
 
   // logout() {

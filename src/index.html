@@ -1,16 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
   <meta charset="UTF-8">
   <title>Ionic App</title>
-  <!-- <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"> -->
+  <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="format-detection" content="telephone=no">
   <meta name="msapplication-tap-highlight" content="no">
 
-  <link rel="icon" type="image/x-icon" href="assets/icon/favicon.ico">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> -->
+
+  <link rel="stylesheet" href="assets/honey.css" />
+
+  <link rel="icon" type="image/x-icon" href="assets/imgs/poop.png">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#4e8ef7">
-  
+
   <!-- add to homescreen for ios -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -18,18 +26,19 @@
   <!-- cordova.js required for cordova apps -->
   <script src="cordova.js"></script>
 
-  <!-- un-comment this code to enable service worker
-  <script>
+  <!-- un-comment this code to enable service worker -->
+ <script>
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('service-worker.js')
         .then(() => console.log('service worker installed'))
         .catch(err => console.error('Error', err));
     }
-  </script>-->
+  </script>
 
   <link href="build/main.css" rel="stylesheet">
 
 </head>
+
 <body>
 
   <!-- Ionic's root component and where the app will load -->
@@ -44,6 +53,41 @@
 
   <!-- The main bundle js is generated during the build process -->
   <script src="build/main.js"></script>
+<!-- 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $(window).on('resize', hexagonalPattern);
 
+      hexagonalPattern();
+
+      function hexagonalPattern() {
+        var width = $('.container').width();
+        var $item = $('.hexa');
+        var itemWidth = $item.width() * 2;
+        var margin = 1;
+        var rowLength = Math.floor(width / (itemWidth * 3 / 4 + 1));
+
+        var itemLength = $item.length;
+        var patternLength = Math.floor(itemLength / rowLength);
+        var currentRow = 1;
+
+        $item.each(function (index) {
+          $(this).removeClass('top');
+          if (index + 1 > currentRow * rowLength) {
+            currentRow++;
+          }
+
+          var indexRow = index + 1 - (currentRow - 1) * rowLength;
+
+          if (indexRow % 2 == 0) {
+            $(this).addClass('top');
+          }
+        });
+      }
+    });
+
+  </script> -->
 </body>
+
 </html>

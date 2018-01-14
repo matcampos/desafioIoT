@@ -11,7 +11,8 @@ import { LoginPage } from '../pages/login/login';
 import { NotificationPage } from '../pages/notification/notification';
 import { Adal4Service, Adal4HTTPService } from 'adal-angular4';
 import { AuthService } from './services/auth.service';
-
+import { EmailService }from '../pages/notification/email-service';
+import { HttpClient } from '../pages/notification/http-client';
 @NgModule({
   declarations: [
     MyApp,
@@ -35,6 +36,8 @@ import { AuthService } from './services/auth.service';
     HttpModule,
     AuthService,
     Adal4Service,
+    EmailService,
+    HttpClient,
     {
       provide: Adal4HTTPService,
       useFactory: Adal4HTTPService.factory,
