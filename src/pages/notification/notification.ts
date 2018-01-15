@@ -3,6 +3,7 @@ import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { Http } from '@angular/http';
 import { EmailService } from './email-service';
 import { EmailModel } from '../../models/email.model';
+import { HomePage } from '../home/home';
 @Component({
     selector: 'page-notification',
     templateUrl: 'notification.html'
@@ -63,6 +64,7 @@ export class NotificationPage implements OnInit {
                 position: 'top'
             });
             toast.present();
+            this.navCtrl.push(HomePage);
         } else {
             let toast = this.toastCtrl.create({
                 message: 'Escolha um problema para notificar!!',
