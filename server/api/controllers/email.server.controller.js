@@ -24,10 +24,12 @@ exports.send = (req, res) => {
 
     transporter.sendMail(message, (error, info) => {
         if (error) {
+            res.sendStatus(500);
             console.log('Erro no envio');
             console.log(error.message);
             return process.exit(1);
         }
+        res.sendStatus(200);
         console.log('Email enviado com sucesso');
         console.log(nodemailer.getTestMessageUrl(info));
     });
