@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, NavParams, ToastController } from 'ionic-angular';
-import { Http } from '@angular/http';
+import { NavParams, ToastController } from 'ionic-angular';
 import { EmailService } from './email-service';
 import { EmailModel } from '../../models/email.model';
-import { HomePage } from '../home/home';
 @Component({
     selector: 'page-notification',
     templateUrl: 'notification.html'
@@ -12,9 +10,7 @@ import { HomePage } from '../home/home';
 export class NotificationPage implements OnInit {
     private param;
 
-    constructor(private navCtrl: NavController,
-        private navParams: NavParams,
-        private http: Http,
+    constructor(private navParams: NavParams,
         private toastCtrl: ToastController,
         private sendEmailService: EmailService) {
         this.param = navParams.get("param");
@@ -44,7 +40,7 @@ export class NotificationPage implements OnInit {
 
     notifyFC() {
         if (this.selectedItem != ""  || this.problemDesc != "") {
-            this.emailModel.to = "matheus.campos@fcamara.com.br";
+            this.emailModel.to = "matheus.alves1998@hotmail.com";
             this.emailModel.subject = "Report de " + localStorage.getItem('userName');
             if (this.othersSelected == true) {
                 this.emailModel.text = localStorage.getItem('userName') + " reportou que o " + this.param + " está " + this.selectedItem;
@@ -64,7 +60,7 @@ export class NotificationPage implements OnInit {
                 position: 'top'
             });
             toast.present();
-            this.navCtrl.push(HomePage);
+            // this.navCtrl.push(HomePage);
         } else {
             let toast = this.toastCtrl.create({
                 message: 'Escolha um problema para notificar!!',

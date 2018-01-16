@@ -18,7 +18,7 @@ const config: adal.Config = {
 })
 
 export class MyApp {
-  rootPage:any = LoginPage;
+  rootPage:any = HomePage;
   
 
   constructor(

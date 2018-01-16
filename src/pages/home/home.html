@@ -11,7 +11,7 @@
     <ion-refresher-content pullingIcon="icon-poo" pullingText="Puxe para recarregar" refreshingSpinner="circles" refreshingText="Recarregando...">
     </ion-refresher-content>
   </ion-refresher>
-  <ion-grid>
+  <!-- <ion-grid>
     <ion-row>
       <ion-col col-12>
         <ion-card>
@@ -407,61 +407,143 @@
         </ion-card>
       </ion-col>
     </ion-row>
-  </ion-grid>
-
-  <!-- <div class="holder">
+  </ion-grid> -->
+ 
+  <div class="holder">
     <ul class="container">
-      <li class="hexa">
-        <div class="front">
-        </div>
-        <div class="back"></div>
-      </li>
-      <li class="hexa">
-        <div class="front"></div>
-        <div class="back"></div>
-      </li>
-      <li class="hexa">
-        <div class="front"></div>
-        <div class="back"></div>
-      </li>
-      <li class="hexa">
-        <div class="front"></div>
-        <div class="back"></div>
-      </li>
-      <li class="hexa">
-        <div class="front"></div>
-        <div class="back"></div>
-      </li>
-      <li class="hexa">
-        <div class="front"></div>
-        <div class="back"></div>
-      </li>
-      <li class="hexa">
-        <div class="front"></div>
-        <div class="back"></div>
-      </li>
-      <li class="hexa">
-        <div class="front"></div>
-        <div class="back"></div>
-      </li>
-      <li class="hexa">
-        <div class="front"></div>
-        <div class="back"></div>
-      </li>
-      <li class="hexa">
-        <div class="front"></div>
-        <div class="back"></div>
-      </li>
-      <li class="hexa">
-        <div class="front"></div>
-        <div class="back"></div>
-      </li>
-      <li class="hexa">
-        <div class="front"></div>
-        <div class="back"></div>
-      </li>
+        <li class="hexa">
+            <div class="front">
+                <img src="../../assets/imgs/happy-poop.svg?v=1" >
+                <img src="../../assets/imgs/flags/argentina.png" class="flag">
+            </div>
+            <div class="back">
+                <button class="repor" (click)="unread('Banheiro Argentina')">
+                    Reportar <br>Problema!
+                </button>
+            </div>
+        </li>
+        <li class="hexa">
+            <div class="front">
+                <img src="../../assets/imgs/dead-poop.svg?v=1" >
+                <img src="../../assets/imgs/flags/australia.png"  class="flag">
+            </div>
+            <div class="back">
+                <button class="repor" (click)="unread('Banheiro Austrália')">
+                    Reportar <br>Problema!
+                </button>
+            </div>
+        </li>
+        <li class="hexa">
+            <div class="front">
+                <img src="../../assets/imgs/poop-pooping.svg?v=1" >
+                <img src="../../assets/imgs/flags/brazil.png" class="flag">
+            </div>
+            <div class="back">
+                <button class="repor" (click)="unread('Banheiro Brasil')">
+                    Reportar <br>Problema! 
+                </button>
+            </div>
+        </li>
+        <li class="hexa">
+            <div class="front">
+                <img src="../../assets/imgs/happy-poop.svg?v=1" >
+                <img src="../../assets/imgs/flags/canada.png" class="flag">
+            </div>
+            <div class="back">
+                <button class="repor" (click)="unread('Banheiro Canadá')">
+                    Reportar <br>Problema!
+                </button>
+            </div>
+        </li>
+        <li class="hexa">
+            <div class="front">
+                <img src="../../assets/imgs/dead-poop.svg?v=1" >
+                <img src="../../assets/imgs/flags/china.png" class="flag">
+            </div>
+            <div class="back">
+                <button class="repor" (click)="unread('Banheiro China')">
+                    Reportar <br>Problema!
+                </button>
+            </div>
+        </li>
+        <li class="hexa">
+            <div class="front">
+                <img src="../../assets/imgs/happy-poop.svg?v=1" >
+                <img src="../../assets/imgs/flags/england.png" class="flag">
+            </div>
+            <div class="back">
+                <button class="repor" (click)="unread('Banheiro Ingraterra')">
+                    Reportar <br>Problema!
+                </button>
+            </div>
+        </li>
+        <li class="hexa">
+            <div class="front">
+                <img src="../../assets/imgs/poop-pooping.svg?v=1" >
+                <img src="../../assets/imgs/flags/france.png" class="flag">
+            </div>
+            <div class="back">
+                <button class="repor" (click)="unread('Banheiro França')">
+                    Reportar <br>Problema!
+                </button>
+            </div>
+        </li>
+        <li class="hexa">
+            <div class="front">
+                <img src="../../assets/imgs/happy-poop.svg?v=1" >
+                <img src="../../assets/imgs/flags/germany.png" class="flag">
+            </div>
+            <div class="back">
+                <button class="repor" (click)="unread('Banheiro Alemanha')">
+                    Reportar <br>Problema! 
+                </button>
+            </div>
+        </li>
+        <li class="hexa">
+            <div class="front">
+                <img src="../../assets/imgs/happy-poop.svg?v=1" >
+                <img src="../../assets/imgs/flags/italy.png" class="flag">
+            </div>
+            <div class="back">
+                <button class="repor" (click)="unread('Banheiro Italia')">
+                    Reportar <br>Problema! 
+                </button>
+            </div>
+        </li>
+        <li class="hexa">
+            <div class="front">
+                <img src="../../assets/imgs/dead-poop.svg?v=1" >
+                <img src="../../assets/imgs/flags/japan.png" class="flag">
+            </div>
+            <div class="back">
+                <button class="repor" (click)="unread('Banheiro Japão')">
+                    Reportar <br>Problema! 
+                </button>
+            </div>
+        </li>
+        <li class="hexa">
+            <div class="front">
+                <img src="../../assets/imgs/dead-poop.svg?v=1" >
+                <img src="../../assets/imgs/flags/portugal.png" class="flag">
+            </div>
+            <div class="back">
+                <button class="repor" (click)="unread('Banheiro Protugal')">
+                    Reportar <br>Problema! 
+                </button>
+            </div>
+        </li>
+        <li class="hexa">
+            <div class="front">
+                <img src="../../assets/imgs/happy-poop.svg?v=1" >
+                <img src="../../assets/imgs/flags/united-states.png" class="flag">
+            </div>
+            <div class="back">
+                <button class="repor" (click)="unread('Banheiro Estados Unidos')">
+                    Reportar <br>Problema! 
+                </button>
+            </div>
+        </li>
     </ul>
-  </div> -->
-
+</div>
 
 </ion-content>
