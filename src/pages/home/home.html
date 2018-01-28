@@ -1,419 +1,18 @@
-<!-- <ion-header>
-  <ion-navbar color="orangeFC">
-    <ion-title>
-      Banheiros
-    </ion-title>
-  </ion-navbar>
-</ion-header> -->
 
 <ion-content padding class="cards-bathroom" (load)="autoRefresh()">
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content pullingIcon="icon-poo" pullingText="Puxe para recarregar" refreshingSpinner="circles" refreshingText="Recarregando...">
     </ion-refresher-content>
   </ion-refresher>
-  <!-- <ion-grid>
-    <ion-row>
-      <ion-col col-12>
-        <ion-card>
-          <ion-card-header>
-            Legenda:
-          </ion-card-header>
-          <ion-card-content>
-            <ion-row>
-              <ion-badge class="itemLegend" icon-start color="secondary">
-                <ion-icon name="happy"></ion-icon>
-                Disponível
-              </ion-badge>
-            </ion-row>
-            <ion-row>
-              <ion-badge class="itemLegend" icon-start color="danger">
-                <ion-icon name="warning"></ion-icon>
-                Ocupado
-              </ion-badge>
-            </ion-row>
-            <ion-row>
-              <ion-badge class="itemLegend" icon-start color="brownFC">
-                <ion-icon class="icon-poo" name="icon-poo"></ion-icon>
-                Ocupado a mais de 15 minutos
-              </ion-badge>
-            </ion-row>
-            <ion-row>
-              <ion-badge class="itemLegend" icon-start color="darkFC">
-                <ion-icon class="icon-skull" name="icon-skull"></ion-icon>
-                Ocupado a mais de 30 minutos!
-              </ion-badge>
-            </ion-row>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
 
-    </ion-row>
-    <ion-row>
-      <ion-col col-12>
-        <ion-card>
-          <ion-card-header>
-            Mapa:
-          </ion-card-header>
-          <ion-card-content>
-            <ion-list *ngIf="showContent">
-
-              <ion-item-sliding class="itemSliding" #item>
-                <ion-item>
-                  <ion-icon *ngIf="status[0] == 'Disponível'" class="imgToilet-happy" name="happy"></ion-icon>
-                  <ion-icon *ngIf="status[0] == 'Ocupado' && minutes[0] < 15" class="imgToilet-warning" name="warning"></ion-icon>
-                  <ion-icon *ngIf="status[0] == 'Ocupado' && minutes[0] >= 15 && minutes[0] < 30" class="imgToilet" name="icon-poo"></ion-icon>
-                  <ion-icon *ngIf="status[0] == 'Ocupado' && minutes[0] >= 30" class="imgToilet-death" name="icon-skull"></ion-icon>
-
-                  <ul *ngIf="status[0] == 'Ocupado'">
-                    <li> Banheiro Corinthians </li>
-                    <li class="li"> {{status[0]}}</li>
-                    <li *ngIf="hours[0] > 0" class="li li2"> há {{hours[0]}}</li>
-                    <li *ngIf="hours[0] > 0" class="li li2"> horas e </li>
-                    <li class="li li2" *ngIf="minutes[0] >= 1"> há {{minutes[0]}}</li>
-                    <li class="li li2" *ngIf="minutes[0] >= 1 && minutes [0]<2">minuto</li>
-                    <li class="li li2" *ngIf="minutes[0] >= 2">minutos</li>
-                  </ul>
-
-                  <ul *ngIf="status[0] == 'Disponível'">
-                    <li> Banheiro Corinthians </li>
-                    <li class="li"> {{status[0]}} </li>
-                  </ul>
-                </ion-item>
-
-                <ion-item-options side="right">
-                  <button ion-button color="danger" (click)="unread('Banheiro Corinthians')">Notificar Problema</button>
-                </ion-item-options>
-              </ion-item-sliding>
-
-              <ion-item-sliding class="itemSliding" #item>
-                <ion-item>
-                  <ion-icon *ngIf="status[1] == 'Disponível'" class="imgToilet-happy" name="happy"></ion-icon>
-                  <ion-icon *ngIf="status[1] == 'Ocupado' && minutes[1] < 15" class="imgToilet-warning" name="warning"></ion-icon>
-                  <ion-icon *ngIf="status[1] == 'Ocupado' && minutes[1] >= 15 && minutes[1] < 30" class="imgToilet" name="icon-poo"></ion-icon>
-                  <ion-icon *ngIf="status[1] == 'Ocupado' && minutes[1] >= 30" class="imgToilet-death" name="icon-skull"></ion-icon>
-
-                  <ul *ngIf="status[1] == 'Ocupado'">
-                    <li> Banheiro Santos </li>
-                    <li class="li"> {{status[1]}}</li>
-                    <li *ngIf="hours[1] > 0" class="li li2"> há {{hours[1]}}</li>
-                    <li *ngIf="hours[1] > 0" class="li li2"> horas e </li>
-                    <li *ngIf="minutes[1] >= 1" class="li li2"> há {{minutes[1]}}</li>
-                    <li *ngIf="minutes[1] >= 1 && minutes [1]<2" class="li li2">minuto</li>
-                    <li *ngIf="minutes[1] >= 2" class="li li2">minutos</li>
-                  </ul>
-
-                  <ul *ngIf="status[1] == 'Disponível'">
-                    <li> Banheiro Santos </li>
-                    <li class="li"> {{status[1]}} </li>
-                  </ul>
-                </ion-item>
-
-                <ion-item-options side="right">
-                  <button ion-button color="danger" (click)="unread('Banheiro Santos')">Notificar Problema</button>
-                </ion-item-options>
-              </ion-item-sliding>
-
-              <ion-item-sliding class="itemSliding" #item>
-                <ion-item>
-                  <ion-icon *ngIf="status[2] == 'Disponível'" class="imgToilet-happy" name="happy"></ion-icon>
-                  <ion-icon *ngIf="status[2] == 'Ocupado' && minutes[2] < 15" class="imgToilet-warning" name="warning"></ion-icon>
-                  <ion-icon *ngIf="status[2] == 'Ocupado' && minutes[2] >= 15 && minutes[2] < 30" class="imgToilet" name="icon-poo"></ion-icon>
-                  <ion-icon *ngIf="status[2] == 'Ocupado' && minutes[2] > 30" class="imgToilet-death" name="icon-skull"></ion-icon>
-
-                  <ul *ngIf="status[2] == 'Ocupado'">
-                    <li> Banheiro São Paulo </li>
-                    <li class="li"> {{status[2]}} </li>
-                    <li *ngIf="hours[2] > 0" class="li li2"> há {{hours[2]}}</li>
-                    <li *ngIf="hours[2] > 0" class="li li2"> horas e </li>
-                    <li class="li li2" *ngIf="minutes[2] >= 1"> há {{minutes[2]}}</li>
-                    <li class="li li2" *ngIf="minutes[2] >= 1 && minutes [2]<2">minuto</li>
-                    <li class="li li2" *ngIf="minutes[2] >= 2">minutos</li>
-                  </ul>
-
-                  <ul *ngIf="status[2] == 'Disponível'">
-                    <li> Banheiro São Paulo </li>
-                    <li class="li"> {{status[2]}} </li>
-                  </ul>
-                </ion-item>
-
-                <ion-item-options side="right">
-                  <button ion-button color="danger" (click)="unread('Banheiro São Paulo')">Notificar Problema</button>
-                </ion-item-options>
-              </ion-item-sliding>
-
-              <ion-item-sliding class="itemSliding" #item>
-                <ion-item>
-                  <ion-icon *ngIf="status[3] == 'Disponível'" class="imgToilet-happy" name="happy"></ion-icon>
-                  <ion-icon *ngIf="status[3] == 'Ocupado' && minutes[3] < 15" class="imgToilet-warning" name="warning"></ion-icon>
-                  <ion-icon *ngIf="status[3] == 'Ocupado' && minutes[3] >= 15 && minutes[3] < 30" class="imgToilet" name="icon-poo"></ion-icon>
-                  <ion-icon *ngIf="status[3] == 'Ocupado' && minutes[3] >= 30" class="imgToilet-death" name="icon-skull"></ion-icon>
-
-                  <ul *ngIf="status[3] == 'Ocupado'">
-                    <li> Banheiro Palmeiras </li>
-                    <li class="li"> {{status[3]}}</li>
-                    <li *ngIf="hours[3] > 0" class="li li2"> há {{hours[3]}}</li>
-                    <li *ngIf="hours[3] > 0" class="li li2"> horas e </li>
-                    <li class="li li2" *ngIf="minutes[3] >= 1"> há {{minutes[3]}}</li>
-                    <li class="li li2" *ngIf="minutes[3] >= 1 && minutes [3]<2">minuto</li>
-                    <li class="li li2" *ngIf="minutes[3] >= 2">minutos</li>
-                  </ul>
-
-                  <ul *ngIf="status[3] == 'Disponível'">
-                    <li> Banheiro Palmeiras </li>
-                    <li class="li"> {{status[3]}} </li>
-                  </ul>
-                </ion-item>
-
-                <ion-item-options side="right">
-                  <button ion-button color="danger" (click)="unread('Banheiro Palmeiras')">Notificar Problema</button>
-                </ion-item-options>
-              </ion-item-sliding>
-
-
-
-
-
-              <ion-item-sliding class="itemSliding" #item>
-                <ion-item>
-                  <ion-icon *ngIf="status[4] == 'Disponível'" class="imgToilet-happy" name="happy"></ion-icon>
-                  <ion-icon *ngIf="status[4] == 'Ocupado' && minutes[4] < 15" class="imgToilet-warning" name="warning"></ion-icon>
-                  <ion-icon *ngIf="status[4] == 'Ocupado' && minutes[4] >= 15 && minutes[4] < 30" class="imgToilet" name="icon-poo"></ion-icon>
-                  <ion-icon *ngIf="status[4] == 'Ocupado' && minutes[4] >= 30" class="imgToilet-death" name="icon-skull"></ion-icon>
-
-                  <ul *ngIf="status[4] == 'Ocupado'">
-                    <li> Banheiro Ponte preta </li>
-                    <li class="li"> {{status[4]}}</li>
-                    <li *ngIf="hours[4] > 0" class="li li2"> há {{hours[4]}}</li>
-                    <li *ngIf="hours[4] > 0" class="li li2"> horas e </li>
-                    <li class="li li2" *ngIf="minutes[4] >= 1"> há {{minutes[4]}}</li>
-                    <li class="li li2" *ngIf="minutes[4] >= 1 && minutes [4]<2">minuto</li>
-                    <li class="li li2" *ngIf="minutes[4] >= 2">minutos</li>
-                  </ul>
-
-                  <ul *ngIf="status[4] == 'Disponível'">
-                    <li> Banheiro Ponte preta </li>
-                    <li class="li"> {{status[4]}} </li>
-                  </ul>
-                </ion-item>
-
-                <ion-item-options side="right">
-                  <button ion-button color="danger" (click)="unread('Banheiro Ponte preta')">Notificar Problema</button>
-                </ion-item-options>
-              </ion-item-sliding>
-
-
-              <ion-item-sliding class="itemSliding" #item>
-                <ion-item>
-                  <ion-icon *ngIf="status[5] == 'Disponível'" class="imgToilet-happy" name="happy"></ion-icon>
-                  <ion-icon *ngIf="status[5] == 'Ocupado' && minutes[5] < 15" class="imgToilet-warning" name="warning"></ion-icon>
-                  <ion-icon *ngIf="status[5] == 'Ocupado' && minutes[5] >= 15 && minutes[5] < 30" class="imgToilet" name="icon-poo"></ion-icon>
-                  <ion-icon *ngIf="status[5] == 'Ocupado' && minutes[5] >= 30" class="imgToilet-death" name="icon-skull"></ion-icon>
-
-                  <ul *ngIf="status[5] == 'Ocupado'">
-                    <li> Banheiro Flamengo</li>
-                    <li class="li"> {{status[5]}}</li>
-                    <li *ngIf="hours[5] > 0" class="li li2"> há {{hours[5]}}</li>
-                    <li *ngIf="hours[5] > 0" class="li li2"> horas e </li>
-                    <li class="li li2" *ngIf="minutes[5] >= 1"> há {{minutes[5]}}</li>
-                    <li class="li li2" *ngIf="minutes[5] >= 1 && minutes [5]<2">minuto</li>
-                    <li class="li li2" *ngIf="minutes[5] >= 2">minutos</li>
-                  </ul>
-
-                  <ul *ngIf="status[5] == 'Disponível'">
-                    <li> Banheiro Flamengo </li>
-                    <li class="li"> {{status[5]}} </li>
-                  </ul>
-                </ion-item>
-
-                <ion-item-options side="right">
-                  <button ion-button color="danger" (click)="unread('Banheiro Flamengo')">Notificar Problema</button>
-                </ion-item-options>
-              </ion-item-sliding>
-
-
-              <ion-item-sliding class="itemSliding" #item>
-                <ion-item>
-                  <ion-icon *ngIf="status[6] == 'Disponível'" class="imgToilet-happy" name="happy"></ion-icon>
-                  <ion-icon *ngIf="status[6] == 'Ocupado' && minutes[6] < 15" class="imgToilet-warning" name="warning"></ion-icon>
-                  <ion-icon *ngIf="status[6] == 'Ocupado' && minutes[6] >= 15 && minutes[6] < 30" class="imgToilet" name="icon-poo"></ion-icon>
-                  <ion-icon *ngIf="status[6] == 'Ocupado' && minutes[6] >= 30" class="imgToilet-death" name="icon-skull"></ion-icon>
-
-                  <ul *ngIf="status[6] == 'Ocupado'">
-                    <li> Banheiro Fluminense</li>
-                    <li class="li"> {{status[6]}}</li>
-                    <li *ngIf="hours[6] > 0" class="li li2"> há {{hours[6]}}</li>
-                    <li *ngIf="hours[6] > 0" class="li li2"> horas e </li>
-                    <li class="li li2" *ngIf="minutes[6] >= 1"> há {{minutes[6]}}</li>
-                    <li class="li li2" *ngIf="minutes[6] >= 1 && minutes [6]<2">minuto</li>
-                    <li class="li li2" *ngIf="minutes[6] >= 2">minutos</li>
-                  </ul>
-
-                  <ul *ngIf="status[6] == 'Disponível'">
-                    <li> Banheiro Fluminense </li>
-                    <li class="li"> {{status[6]}} </li>
-                  </ul>
-                </ion-item>
-
-                <ion-item-options side="right">
-                  <button ion-button color="danger" (click)="unread('Banheiro Fluminense')">Notificar Problema</button>
-                </ion-item-options>
-              </ion-item-sliding>
-
-              <ion-item-sliding class="itemSliding" #item>
-                <ion-item>
-                  <ion-icon *ngIf="status[7] == 'Disponível'" class="imgToilet-happy" name="happy"></ion-icon>
-                  <ion-icon *ngIf="status[7] == 'Ocupado' && minutes[7] < 15" class="imgToilet-warning" name="warning"></ion-icon>
-                  <ion-icon *ngIf="status[7] == 'Ocupado' && minutes[7] >= 15 && minutes[7] < 30" class="imgToilet" name="icon-poo"></ion-icon>
-                  <ion-icon *ngIf="status[7] == 'Ocupado' && minutes[7] >= 30" class="imgToilet-death" name="icon-skull"></ion-icon>
-
-                  <ul *ngIf="status[7] == 'Ocupado'">
-                    <li> Banheiro Vasco</li>
-                    <li class="li"> {{status[7]}}</li>
-                    <li *ngIf="hours[7] > 0" class="li li2"> há {{hours[7]}}</li>
-                    <li *ngIf="hours[7] > 0" class="li li2"> horas e </li>
-                    <li class="li li2" *ngIf="minutes[7] >= 1"> há {{minutes[7]}}</li>
-                    <li class="li li2" *ngIf="minutes[7] >= 1 && minutes [7]<2">minuto</li>
-                    <li class="li li2" *ngIf="minutes[7] >= 2">minutos</li>
-                  </ul>
-
-                  <ul *ngIf="status[7] == 'Disponível'">
-                    <li> Banheiro Vasco </li>
-                    <li class="li"> {{status[7]}} </li>
-                  </ul>
-                </ion-item>
-
-                <ion-item-options side="right">
-                  <button ion-button color="danger" (click)="unread('Banheiro Vasco')">Notificar Problema</button>
-                </ion-item-options>
-              </ion-item-sliding>
-
-              <ion-item-sliding class="itemSliding" #item>
-                <ion-item>
-                  <ion-icon *ngIf="status[8] == 'Disponível'" class="imgToilet-happy" name="happy"></ion-icon>
-                  <ion-icon *ngIf="status[8] == 'Ocupado' && minutes[8] < 15" class="imgToilet-warning" name="warning"></ion-icon>
-                  <ion-icon *ngIf="status[8] == 'Ocupado' && minutes[8] >= 15 && minutes[8] < 30" class="imgToilet" name="icon-poo"></ion-icon>
-                  <ion-icon *ngIf="status[8] == 'Ocupado' && minutes[8] >= 30" class="imgToilet-death" name="icon-skull"></ion-icon>
-
-                  <ul *ngIf="status[8] == 'Ocupado'">
-                    <li> Banheiro Botafogo</li>
-                    <li class="li"> {{status[8]}}</li>
-                    <li *ngIf="hours[8] > 0" class="li li2"> há {{hours[8]}}</li>
-                    <li *ngIf="hours[8] > 0" class="li li2"> horas e </li>
-                    <li class="li li2" *ngIf="minutes[8] >= 1"> há {{minutes[8]}}</li>
-                    <li class="li li2" *ngIf="minutes[8] >= 1 && minutes [8]<2">minuto</li>
-                    <li class="li li2" *ngIf="minutes[8] >= 2">minutos</li>
-                  </ul>
-
-                  <ul *ngIf="status[8] == 'Disponível'">
-                    <li> Banheiro Botafogo </li>
-                    <li class="li"> {{status[8]}} </li>
-                  </ul>
-                </ion-item>
-
-                <ion-item-options side="right">
-                  <button ion-button color="danger" (click)="unread('Banheiro Botafogo')">Notificar Problema</button>
-                </ion-item-options>
-              </ion-item-sliding>
-
-
-              <ion-item-sliding class="itemSliding" #item>
-                <ion-item>
-                  <ion-icon *ngIf="status[9] == 'Disponível'" class="imgToilet-happy" name="happy"></ion-icon>
-                  <ion-icon *ngIf="status[9] == 'Ocupado' && minutes[9] < 15" class="imgToilet-warning" name="warning"></ion-icon>
-                  <ion-icon *ngIf="status[9] == 'Ocupado' && minutes[9] >= 15 && minutes[9] < 30" class="imgToilet" name="icon-poo"></ion-icon>
-                  <ion-icon *ngIf="status[9] == 'Ocupado' && minutes[9] >= 30" class="imgToilet-death" name="icon-skull"></ion-icon>
-
-                  <ul *ngIf="status[9] == 'Ocupado'">
-                    <li> Banheiro Cruzeiro</li>
-                    <li class="li"> {{status[9]}}</li>
-                    <li *ngIf="hours[9] > 0" class="li li2"> há {{hours[9]}}</li>
-                    <li *ngIf="hours[9] > 0" class="li li2"> horas e </li>
-                    <li class="li li2" *ngIf="minutes[9] >= 1"> há {{minutes[9]}}</li>
-                    <li class="li li2" *ngIf="minutes[9] >= 1 && minutes [9]<2">minuto</li>
-                    <li class="li li2" *ngIf="minutes[9] >= 2">minutos</li>
-                  </ul>
-
-                  <ul *ngIf="status[9] == 'Disponível'">
-                    <li> Banheiro Cruzeiro </li>
-                    <li class="li"> {{status[9]}} </li>
-                  </ul>
-                </ion-item>
-
-                <ion-item-options side="right">
-                  <button ion-button color="danger" (click)="unread('Banheiro Cruzeiro')">Notificar Problema</button>
-                </ion-item-options>
-              </ion-item-sliding>
-
-              <ion-item-sliding class="itemSliding" #item>
-                <ion-item>
-                  <ion-icon *ngIf="status[10] == 'Disponível'" class="imgToilet-happy" name="happy"></ion-icon>
-                  <ion-icon *ngIf="status[10] == 'Ocupado' && minutes[10] < 15" class="imgToilet-warning" name="warning"></ion-icon>
-                  <ion-icon *ngIf="status[10] == 'Ocupado' && minutes[10] >= 15 && minutes[10] < 30" class="imgToilet" name="icon-poo"></ion-icon>
-                  <ion-icon *ngIf="status[10] == 'Ocupado' && minutes[10] >= 30" class="imgToilet-death" name="icon-skull"></ion-icon>
-
-                  <ul *ngIf="status[10] == 'Ocupado'">
-                    <li> Banheiro Atlético Mineiro</li>
-                    <li class="li"> {{status[10]}}</li>
-                    <li *ngIf="hours[10] > 0" class="li li2"> há {{hours[10]}}</li>
-                    <li *ngIf="hours[10] > 0" class="li li2"> horas e </li>
-                    <li class="li li2" *ngIf="minutes[10] >= 1"> há {{minutes[10]}}</li>
-                    <li class="li li2" *ngIf="minutes[10] >= 1 && minutes [10]<2">minuto</li>
-                    <li class="li li2" *ngIf="minutes[10] >= 2">minutos</li>
-                  </ul>
-
-                  <ul *ngIf="status[10] == 'Disponível'">
-                    <li> Banheiro Atlético Mineiro </li>
-                    <li class="li"> {{status[10]}} </li>
-                  </ul>
-                </ion-item>
-
-                <ion-item-options side="right">
-                  <button ion-button color="danger" (click)="unread('Banheiro Atlético Mineiro')">Notificar Problema</button>
-                </ion-item-options>
-              </ion-item-sliding>
-
-
-              <ion-item-sliding class="itemSliding" #item>
-                <ion-item>
-                  <ion-icon *ngIf="status[11] == 'Disponível'" class="imgToilet-happy" name="happy"></ion-icon>
-                  <ion-icon *ngIf="status[11] == 'Ocupado' && minutes[11] < 15" class="imgToilet-warning" name="warning"></ion-icon>
-                  <ion-icon *ngIf="status[11] == 'Ocupado' && minutes[11] >= 15 && minutes[11] < 30" class="imgToilet" name="icon-poo"></ion-icon>
-                  <ion-icon *ngIf="status[11] == 'Ocupado' && minutes[11] >= 30" class="imgToilet-death" name="icon-skull"></ion-icon>
-
-                  <ul *ngIf="status[11] == 'Ocupado'">
-                    <li> Banheiro Grêmio</li>
-                    <li class="li"> {{status[11]}}</li>
-                    <li *ngIf="hours[11] > 0" class="li li2"> há {{hours[11]}}</li>
-                    <li *ngIf="hours[11] > 0" class="li li2"> horas e </li>
-                    <li class="li li2" *ngIf="minutes[11] >= 1"> há {{minutes[11]}}</li>
-                    <li class="li li2" *ngIf="minutes[11] >= 1 && minutes [11]<2">minuto</li>
-                    <li class="li li2" *ngIf="minutes[11] >= 2">minutos</li>
-                  </ul>
-
-                  <ul *ngIf="status[11] == 'Disponível'">
-                    <li> Banheiro Grêmio </li>
-                    <li class="li"> {{status[11]}} </li>
-                  </ul>
-                </ion-item>
-
-                <ion-item-options side="right">
-                  <button ion-button color="danger" (click)="unread('Banheiro Grêmio')">Notificar Problema</button>
-                </ion-item-options>
-              </ion-item-sliding>
-
-  
-            </ion-list>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid> -->
  
   <div class="holder">
     <ul class="container">
         <li class="hexa">
             <div class="front">
-                <img src="../../assets/imgs/happy-poop.svg?v=1" >
+                <img *ngIf="status[0] == 'Disponível'" src="../../assets/imgs/happy-poop.svg?v=1" >
+                <img *ngIf="status[0] == 'Ocupado' && minutes[0] < 15" src="../../assets/imgs/poop-pooping.svg?v=1" >
+                <img *ngIf="status[0] == 'Ocupado' && minutes[0] >= 15" src="../../assets/imgs/dead-poop.svg?v=1">
                 <img src="../../assets/imgs/flags/argentina.png" class="flag">
             </div>
             <div class="back">
@@ -424,7 +23,9 @@
         </li>
         <li class="hexa">
             <div class="front">
-                <img src="../../assets/imgs/dead-poop.svg?v=1" >
+              <img *ngIf="status[1] == 'Disponível'" src="../../assets/imgs/happy-poop.svg?v=1" >
+              <img *ngIf="status[1] == 'Ocupado' && minutes[1] < 15" src="../../assets/imgs/poop-pooping.svg?v=1" >
+              <img *ngIf="status[1] == 'Ocupado' && minutes[1] >= 15" src="../../assets/imgs/dead-poop.svg?v=1">
                 <img src="../../assets/imgs/flags/australia.png"  class="flag">
             </div>
             <div class="back">
@@ -435,7 +36,9 @@
         </li>
         <li class="hexa">
             <div class="front">
-                <img src="../../assets/imgs/poop-pooping.svg?v=1" >
+              <img *ngIf="status[2] == 'Disponível'" src="../../assets/imgs/happy-poop.svg?v=1" >
+              <img *ngIf="status[2] == 'Ocupado' && minutes[2] < 15" src="../../assets/imgs/poop-pooping.svg?v=1" >
+              <img *ngIf="status[2] == 'Ocupado' && minutes[2] >= 15" src="../../assets/imgs/dead-poop.svg?v=1">
                 <img src="../../assets/imgs/flags/brazil.png" class="flag">
             </div>
             <div class="back">
@@ -446,7 +49,9 @@
         </li>
         <li class="hexa">
             <div class="front">
-                <img src="../../assets/imgs/happy-poop.svg?v=1" >
+              <img *ngIf="status[3] == 'Disponível'" src="../../assets/imgs/happy-poop.svg?v=1" >
+              <img *ngIf="status[3] == 'Ocupado' && minutes[3] < 15" src="../../assets/imgs/poop-pooping.svg?v=1" >
+              <img *ngIf="status[3] == 'Ocupado' && minutes[3] >= 15" src="../../assets/imgs/dead-poop.svg?v=1">
                 <img src="../../assets/imgs/flags/canada.png" class="flag">
             </div>
             <div class="back">
@@ -457,7 +62,9 @@
         </li>
         <li class="hexa">
             <div class="front">
-                <img src="../../assets/imgs/dead-poop.svg?v=1" >
+              <img *ngIf="status[4] == 'Disponível'" src="../../assets/imgs/happy-poop.svg?v=1" >
+              <img *ngIf="status[4] == 'Ocupado' && minutes[4] < 15" src="../../assets/imgs/poop-pooping.svg?v=1" >
+              <img *ngIf="status[4] == 'Ocupado' && minutes[4] >= 15" src="../../assets/imgs/dead-poop.svg?v=1">
                 <img src="../../assets/imgs/flags/china.png" class="flag">
             </div>
             <div class="back">
@@ -468,7 +75,9 @@
         </li>
         <li class="hexa">
             <div class="front">
-                <img src="../../assets/imgs/happy-poop.svg?v=1" >
+              <img *ngIf="status[5] == 'Disponível'" src="../../assets/imgs/happy-poop.svg?v=1" >
+              <img *ngIf="status[5] == 'Ocupado' && minutes[5] < 15" src="../../assets/imgs/poop-pooping.svg?v=1" >
+              <img *ngIf="status[5] == 'Ocupado' && minutes[5] >= 15" src="../../assets/imgs/dead-poop.svg?v=1">
                 <img src="../../assets/imgs/flags/england.png" class="flag">
             </div>
             <div class="back">
@@ -479,7 +88,9 @@
         </li>
         <li class="hexa">
             <div class="front">
-                <img src="../../assets/imgs/poop-pooping.svg?v=1" >
+              <img *ngIf="status[6] == 'Disponível'" src="../../assets/imgs/happy-poop.svg?v=1" >
+              <img *ngIf="status[6] == 'Ocupado' && minutes[6] < 15" src="../../assets/imgs/poop-pooping.svg?v=1" >
+              <img *ngIf="status[6] == 'Ocupado' && minutes[6] >= 15" src="../../assets/imgs/dead-poop.svg?v=1">
                 <img src="../../assets/imgs/flags/france.png" class="flag">
             </div>
             <div class="back">
@@ -490,7 +101,9 @@
         </li>
         <li class="hexa">
             <div class="front">
-                <img src="../../assets/imgs/happy-poop.svg?v=1" >
+              <img *ngIf="status[7] == 'Disponível'" src="../../assets/imgs/happy-poop.svg?v=1" >
+              <img *ngIf="status[7] == 'Ocupado' && minutes[7] < 15" src="../../assets/imgs/poop-pooping.svg?v=1" >
+              <img *ngIf="status[7] == 'Ocupado' && minutes[7] >= 15" src="../../assets/imgs/dead-poop.svg?v=1">
                 <img src="../../assets/imgs/flags/germany.png" class="flag">
             </div>
             <div class="back">
@@ -501,7 +114,9 @@
         </li>
         <li class="hexa">
             <div class="front">
-                <img src="../../assets/imgs/happy-poop.svg?v=1" >
+              <img *ngIf="status[8] == 'Disponível'" src="../../assets/imgs/happy-poop.svg?v=1" >
+              <img *ngIf="status[8] == 'Ocupado' && minutes[8] < 15" src="../../assets/imgs/poop-pooping.svg?v=1" >
+              <img *ngIf="status[8] == 'Ocupado' && minutes[8] >= 15" src="../../assets/imgs/dead-poop.svg?v=1">
                 <img src="../../assets/imgs/flags/italy.png" class="flag">
             </div>
             <div class="back">
@@ -512,7 +127,9 @@
         </li>
         <li class="hexa">
             <div class="front">
-                <img src="../../assets/imgs/dead-poop.svg?v=1" >
+              <img *ngIf="status[9] == 'Disponível'" src="../../assets/imgs/happy-poop.svg?v=1" >
+              <img *ngIf="status[9] == 'Ocupado' && minutes[9] < 15" src="../../assets/imgs/poop-pooping.svg?v=1" >
+              <img *ngIf="status[9] == 'Ocupado' && minutes[9] >= 15" src="../../assets/imgs/dead-poop.svg?v=1">
                 <img src="../../assets/imgs/flags/japan.png" class="flag">
             </div>
             <div class="back">
@@ -523,7 +140,9 @@
         </li>
         <li class="hexa">
             <div class="front">
-                <img src="../../assets/imgs/dead-poop.svg?v=1" >
+              <img *ngIf="status[10] == 'Disponível'" src="../../assets/imgs/happy-poop.svg?v=1" >
+              <img *ngIf="status[10] == 'Ocupado' && minutes[10] < 15" src="../../assets/imgs/poop-pooping.svg?v=1" >
+              <img *ngIf="status[10] == 'Ocupado' && minutes[10] >= 15" src="../../assets/imgs/dead-poop.svg?v=1">
                 <img src="../../assets/imgs/flags/portugal.png" class="flag">
             </div>
             <div class="back">
@@ -534,7 +153,9 @@
         </li>
         <li class="hexa">
             <div class="front">
-                <img src="../../assets/imgs/happy-poop.svg?v=1" >
+              <img *ngIf="status[11] == 'Disponível'" src="../../assets/imgs/happy-poop.svg?v=1" >
+              <img *ngIf="status[11] == 'Ocupado' && minutes[11] < 15" src="../../assets/imgs/poop-pooping.svg?v=1" >
+              <img *ngIf="status[11] == 'Ocupado' && minutes[11] >= 15" src="../../assets/imgs/dead-poop.svg?v=1">
                 <img src="../../assets/imgs/flags/united-states.png" class="flag">
             </div>
             <div class="back">

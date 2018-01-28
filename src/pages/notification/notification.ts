@@ -27,7 +27,6 @@ export class NotificationPage implements OnInit {
     }
 
     itemSelected(item) {
-        console.log(item)
         this.selectedItem = item;
         if (item == "Outro") {
             this.othersSelected = false;
@@ -39,13 +38,25 @@ export class NotificationPage implements OnInit {
 
 
     notifyFC() {
-        if (this.selectedItem != ""  || this.problemDesc != "") {
+ 
+        if (this.selectedItem) {
             this.emailModel.to = "matheus.alves1998@hotmail.com";
             this.emailModel.subject = "Report de " + localStorage.getItem('userName');
             if (this.othersSelected == true) {
                 this.emailModel.text = localStorage.getItem('userName') + " reportou que o " + this.param + " está " + this.selectedItem;
             } else {
+                if (this.problemDesc){
                 this.emailModel.text = localStorage.getItem('userName') + " reportou a seguinte mensagem no " + this.param + ": " + this.problemDesc;
+                }
+                else{
+                    let toast = this.toastCtrl.create({
+                        message: 'Escreva algo na descrição do problema!',
+                        duration: 3000,
+                        position: 'top'
+                    });
+                    toast.present();
+                    return;
+                }
             }
             this.sendEmailService.send(this.emailModel)
                 .subscribe(res => {
