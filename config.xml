@@ -21,24 +21,24 @@
     <preference name="SplashScreenDelay" value="3000" />
     <platform name="android">
         <allow-intent href="market:*" />
-        <icon density="ldpi" src="www/assets/imgs/poop.png" />
-        <icon density="mdpi" src="www/assets/imgs/poop.png" />
-        <icon density="hdpi" src="www/assets/imgs/poop.png" />
-        <icon density="xhdpi" src="www/assets/imgs/poop.png" />
-        <icon density="xxhdpi" src="www/assets/imgs/poop.png" />
-        <icon density="xxxhdpi" src="www/assets/imgs/poop.png" />
-        <splash density="land-ldpi" src="www/assets/imgs/poop.png" />
-        <splash density="land-mdpi" src="www/assets/imgs/poop.png" />
-        <splash density="land-hdpi" src="www/assets/imgs/poop.png" />
-        <splash density="land-xhdpi" src="www/assets/imgs/poop.png" />
-        <splash density="land-xxhdpi" src="www/assets/imgs/poop.png" />
-        <splash density="land-xxxhdpi" src="www/assets/imgs/poop.png" />
-        <splash density="port-ldpi" src="www/assets/imgs/poop.png" />
-        <splash density="port-mdpi" src="www/assets/imgs/poop.png" />
-        <splash density="port-hdpi" src="www/assets/imgs/poop.png" />
-        <splash density="port-xhdpi" src="www/assets/imgs/poop.png" />
-        <splash density="port-xxhdpi" src="www/assets/imgs/poop.png" />
-        <splash density="port-xxxhdpi" src="www/assets/imgs/poop.png" />
+        <icon density="ldpi" src="www/assets/imgs/banheirosFC.png" />
+        <icon density="mdpi" src="www/assets/imgs/banheirosFC.png" />
+        <icon density="hdpi" src="www/assets/imgs/banheirosFC.png" />
+        <icon density="xhdpi" src="www/assets/imgs/banheirosFC.png" />
+        <icon density="xxhdpi" src="www/assets/imgs/banheirosFC.png" />
+        <icon density="xxxhdpi" src="www/assets/imgs/banheirosFC.png" />
+        <splash density="land-ldpi" src="www/assets/imgs/banheirosFC.png" />
+        <splash density="land-mdpi" src="www/assets/imgs/banheirosFC.png" />
+        <splash density="land-hdpi" src="www/assets/imgs/banheirosFC.png" />
+        <splash density="land-xhdpi" src="www/assets/imgs/banheirosFC.png" />
+        <splash density="land-xxhdpi" src="www/assets/imgs/banheirosFC.png" />
+        <splash density="land-xxxhdpi" src="www/assets/imgs/banheirosFC.png" />
+        <splash density="port-ldpi" src="www/assets/imgs/banheirosFC.png" />
+        <splash density="port-mdpi" src="www/assets/imgs/banheirosFC.png" />
+        <splash density="port-hdpi" src="www/assets/imgs/banheirosFC.png" />
+        <splash density="port-xhdpi" src="www/assets/imgs/banheirosFC.png" />
+        <splash density="port-xxhdpi" src="www/assets/imgs/banheirosFC.png" />
+        <splash density="port-xxxhdpi" src="www/assets/imgs/banheirosFC.png" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
