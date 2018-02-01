@@ -1,4 +1,4 @@
-
+<body>
 <ion-content padding class="cards-bathroom" (load)="autoRefresh()">
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content pullingIcon="icon-poo" pullingText="Puxe para recarregar" refreshingSpinner="circles" refreshingText="Recarregando...">
@@ -6,7 +6,8 @@
   </ion-refresher>
 
  
-  <div class="holder">
+  <!-- <div class="holder">
+      
     <ul class="container">
         <li class="hexa">
             <div class="front">
@@ -165,6 +166,204 @@
             </div>
         </li>
     </ul>
-</div>
+</div> -->
+
+<h1><img src="../../assets/lgo-fc.png" alt="FCamara" title="FCamara"></h1>
+<ul id="hexGrid">
+    <li class="hex">
+        <div class="hexIn">
+            <a class="hexLink" href="#">
+                <img *ngIf="status[0] == 'Disponível'" src="assets/bg-blue.png" class="image" alt="" />
+                <img *ngIf="status[0] == 'Ocupado'" src="assets/bg-red.png" class="image" alt="" />
+                <img *ngIf="status[0] == 'Disponível'" src="../../assets/free.svg?v=1" class="emoji">
+                <img *ngIf="status[0] == 'Ocupado' && minutes[0] >= 15" src="assets/dead.svg?v=1" class="emoji">
+                <img *ngIf ="status[0] == 'Ocupado' && minutes[0] < 15" src="assets/medium.svg?v=1" class="emoji">
+                <img src="../../assets/flags/argentina.png" class="flag">
+                <div class="hover back"></div>
+                <button style="background-color:#ec7b27 !important; color:white;"class="hover report" (click)="unread('Banheiro Argentina')">
+                        Reportar!
+                    </button>
+            </a>
+        </div>
+    </li>
+    <li class="hex">
+        <div class="hexIn">
+            <a class="hexLink" href="#">
+                    <img *ngIf="status[1] == 'Disponível'" src="assets/bg-blue.png" class="image" alt="" />
+                    <img *ngIf="status[1] == 'Ocupado'" src="assets/bg-red.png" class="image" alt="" />
+                    <img *ngIf="status[1] == 'Disponível'" src="../../assets/free.svg?v=1" class="emoji">
+                    <img *ngIf="status[1] == 'Ocupado' && minutes[1] >= 15" src="assets/dead.svg?v=1" class="emoji">
+                    <img *ngIf ="status[1] == 'Ocupado' && minutes[1] < 15" src="assets/medium.svg?v=1" class="emoji">
+                <img src="assets/flags/australia.png" class="flag">
+                <div class="hover back"></div>
+                <button style="background-color:#ec7b27 !important; color:white;"class="hover report" (click)="unread('Banheiro Australia')">
+                        Reportar!
+                    </button>
+            </a>
+        </div>
+    </li>
+    <li class="hex">
+        <div class="hexIn">
+            <a class="hexLink" href="#">
+                    <img *ngIf="status[2] == 'Disponível'" src="assets/bg-blue.png" class="image" alt="" />
+                    <img *ngIf="status[2] == 'Ocupado'" src="assets/bg-red.png" class="image" alt="" />
+                    <img *ngIf="status[2] == 'Disponível'" src="../../assets/free.svg?v=1" class="emoji">
+                    <img *ngIf="status[2] == 'Ocupado' && minutes[2] >= 15" src="assets/dead.svg?v=1" class="emoji">
+                    <img *ngIf ="status[2] == 'Ocupado' && minutes[2] < 15" src="assets/medium.svg?v=1" class="emoji">
+                <img src="assets/flags/brazil.png" class="flag">
+                <div class="hover back"></div>
+                <button style="background-color:#ec7b27 !important; color:white;"class="hover report" (click)="unread('Banheiro Brasil')">
+                        Reportar!
+                    </button>
+            </a>
+        </div>
+    </li>
+    <li class="hex">
+        <div class="hexIn">
+            <a class="hexLink" href="#">
+                    <img *ngIf="status[3] == 'Disponível'" src="assets/bg-blue.png" class="image" alt="" />
+                    <img *ngIf="status[3] == 'Ocupado'" src="assets/bg-red.png" class="image" alt="" />
+                    <img *ngIf="status[3] == 'Disponível'" src="../../assets/free.svg?v=1" class="emoji">
+                    <img *ngIf="status[3] == 'Ocupado' && minutes[3] >= 15" src="assets/dead.svg?v=1" class="emoji">
+                    <img *ngIf ="status[3] == 'Ocupado' && minutes[3] < 15" src="assets/medium.svg?v=1" class="emoji">
+                <img src="assets/flags/canada.png" class="flag">
+                <div class="hover back"></div>
+                <button style="background-color:#ec7b27 !important; color:white;"class="hover report" (click)="unread('Banheiro Canada')">
+                        Reportar!
+                    </button>|
+            </a>
+        </div>
+    </li>
+    <li class="hex">
+        <div class="hexIn">
+            <a class="hexLink" href="#">
+                    <img *ngIf="status[4] == 'Disponível'" src="assets/bg-blue.png" class="image" alt="" />
+                    <img *ngIf="status[4] == 'Ocupado'" src="assets/bg-red.png" class="image" alt="" />
+                    <img *ngIf="status[4] == 'Disponível'" src="../../assets/free.svg?v=1" class="emoji">
+                    <img *ngIf="status[4] == 'Ocupado' && minutes[4] >= 15" src="assets/dead.svg?v=1" class="emoji">
+                    <img *ngIf ="status[4] == 'Ocupado' && minutes[4] < 15" src="assets/medium.svg?v=1" class="emoji">
+                <img src="assets/flags/china.png" class="flag">
+                <div class="hover back"></div>
+                <button style="background-color:#ec7b27 !important; color:white;"class="hover report" (click)="unread('Banheiro Clina')">
+                        Reportar!
+                    </button>
+            </a>
+        </div>
+    </li>
+    <li class="hex">
+        <div class="hexIn">
+            <a class="hexLink" href="#">
+                    <img *ngIf="status[5] == 'Disponível'" src="assets/bg-blue.png" class="image" alt="" />
+                    <img *ngIf="status[5] == 'Ocupado'" src="assets/bg-red.png" class="image" alt="" />
+                    <img *ngIf="status[5] == 'Disponível'" src="../../assets/free.svg?v=1" class="emoji">
+                    <img *ngIf="status[5] == 'Ocupado' && minutes[5] >= 15" src="assets/dead.svg?v=1" class="emoji">
+                    <img *ngIf ="status[5] == 'Ocupado' && minutes[5] < 15" src="assets/medium.svg?v=1" class="emoji">
+                <img src="assets/flags/england.png" class="flag">
+                <div class="hover back"></div>
+                <button style="background-color:#ec7b27 !important; color:white;"class="hover report" (click)="unread('Banheiro Ingraterra')">
+                        Reportar!
+                    </button>
+            </a>
+        </div>
+    </li>
+    <li class="hex">
+        <div class="hexIn">
+            <a class="hexLink" href="#">
+                    <img *ngIf="status[6] == 'Disponível'" src="assets/bg-blue.png" class="image" alt="" />
+                    <img *ngIf="status[6] == 'Ocupado'" src="assets/bg-red.png" class="image" alt="" />
+                    <img *ngIf="status[6] == 'Disponível'" src="../../assets/free.svg?v=1" class="emoji">
+                    <img *ngIf="status[6] == 'Ocupado' && minutes[6] >= 15" src="assets/dead.svg?v=1" class="emoji">
+                    <img *ngIf ="status[6] == 'Ocupado' && minutes[6] < 15" src="assets/medium.svg?v=1" class="emoji">
+                <img src="assets/flags/france.png" class="flag">
+                <div class="hover back"></div>
+                <button style="background-color:#ec7b27 !important; color:white;"class="hover report" (click)="unread('Banheiro França')">
+                        Reportar!
+                </button>
+            </a>
+        </div>
+    </li>
+    <li class="hex">
+        <div class="hexIn">
+            <a class="hexLink" href="#">
+                    <img *ngIf="status[7] == 'Disponível'" src="assets/bg-blue.png" class="image" alt="" />
+                    <img *ngIf="status[7] == 'Ocupado'" src="assets/bg-red.png" class="image" alt="" />
+                    <img *ngIf="status[7] == 'Disponível'" src="../../assets/free.svg?v=1" class="emoji">
+                    <img *ngIf="status[7] == 'Ocupado' && minutes[7] >= 15" src="assets/dead.svg?v=1" class="emoji">
+                    <img *ngIf ="status[7] == 'Ocupado' && minutes[7] < 15" src="assets/medium.svg?v=1" class="emoji">
+                <img src="assets/flags/germany.png" class="flag">
+                <div class="hover back"></div>
+                <button style="background-color:#ec7b27 !important; color:white;"class="hover report" (click)="unread('Banheiro Alemanha')">
+                        Reportar!
+                </button>
+            </a>
+        </div>
+    </li>
+    <li class="hex">
+        <div class="hexIn">
+            <a class="hexLink" href="#">
+                    <img *ngIf="status[8] == 'Disponível'" src="assets/bg-blue.png" class="image" alt="" />
+                    <img *ngIf="status[8] == 'Ocupado'" src="assets/bg-red.png" class="image" alt="" />
+                    <img *ngIf="status[8] == 'Disponível'" src="../../assets/free.svg?v=1" class="emoji">
+                    <img *ngIf="status[8] == 'Ocupado' && minutes[8] >= 15" src="assets/dead.svg?v=1" class="emoji">
+                    <img *ngIf ="status[8] == 'Ocupado' && minutes[8] < 15" src="assets/medium.svg?v=1" class="emoji">
+                <img src="assets/flags/italy.png" class="flag">
+                <div class="hover back"></div>
+                <button style="background-color:#ec7b27 !important; color:white;"class="hover report" (click)="unread('Banheiro Italia')">
+                        Reportar!
+                </button>
+            </a>
+        </div>
+    </li>
+    <li class="hex">
+        <div class="hexIn">
+            <a class="hexLink" href="#">
+                    <img *ngIf="status[9] == 'Disponível'" src="assets/bg-blue.png" class="image" alt="" />
+                    <img *ngIf="status[9] == 'Ocupado'" src="assets/bg-red.png" class="image" alt="" />
+                    <img *ngIf="status[9] == 'Disponível'" src="../../assets/free.svg?v=1" class="emoji">
+                    <img *ngIf="status[9] == 'Ocupado' && minutes[9] >= 15" src="assets/dead.svg?v=1" class="emoji">
+                    <img *ngIf ="status[9] == 'Ocupado' && minutes[9] < 15" src="assets/medium.svg?v=1" class="emoji">
+                <img src="assets/flags/japan.png" class="flag">
+                <div class="hover back"></div>
+                <button style="background-color:#ec7b27 !important; color:white;"class="hover report" (click)="unread('Banheiro Japão')">
+                        Reportar!
+                </button>
+            </a>
+        </div>
+    </li>
+    <li class="hex">
+        <div class="hexIn">
+            <a class="hexLink" href="#">
+                    <img *ngIf="status[10] == 'Disponível'" src="assets/bg-blue.png" class="image" alt="" />
+                    <img *ngIf="status[10] == 'Ocupado'" src="assets/bg-red.png" class="image" alt="" />
+                    <img *ngIf="status[10] == 'Disponível'" src="../../assets/free.svg?v=1" class="emoji">
+                    <img *ngIf="status[10] == 'Ocupado' && minutes[10] >= 15" src="assets/dead.svg?v=1" class="emoji">
+                    <img *ngIf ="status[10] == 'Ocupado' && minutes[10] < 15" src="assets/medium.svg?v=1" class="emoji">
+                <img src="assets/flags/portugal.png" class="flag">
+                <div class="hover back"></div>
+                <button style="background-color:#ec7b27 !important; color:white;"class="hover report" (click)="unread('Banheiro Portugal')">
+                        Reportar!
+                </button>
+            </a>
+        </div>
+    </li>
+    <li class="hex">
+        <div class="hexIn">
+            <a class="hexLink" href="#">
+                    <img *ngIf="status[11] == 'Disponível'" src="assets/bg-blue.png" class="image" alt="" />
+                    <img *ngIf="status[11] == 'Ocupado'" src="assets/bg-red.png" class="image" alt="" />
+                    <img *ngIf="status[11] == 'Disponível'" src="../../assets/free.svg?v=1" class="emoji">
+                    <img *ngIf="status[11] == 'Ocupado' && minutes[11] >= 15" src="assets/dead.svg?v=1" class="emoji">
+                    <img *ngIf ="status[11] == 'Ocupado' && minutes[11] < 15" src="assets/medium.svg?v=1" class="emoji">
+                <img src="assets/flags/united-states.png" class="flag">
+                <div class="hover back"></div>
+                <button style="background-color:#ec7b27 !important; color:white;"class="hover report" (click)="unread('Banheiro Estados Unidos')">
+                        Reportar!
+                </button>
+            </a>
+        </div>
+    </li>
+</ul>
 
 </ion-content>
+</body>
+
