@@ -6,7 +6,7 @@ import { EmailModel } from '../../models/email.model'
 @Injectable()
 export class EmailService {
 
-    urlApi: string = "http://localhost:3000/api/sendmail";
+    urlApi: string = "http://52.90.187.252/api/sendmail";
 
     constructor(private httpClient: HttpClient) { }
 
