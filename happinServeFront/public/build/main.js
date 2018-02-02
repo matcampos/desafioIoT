@@ -529,7 +529,7 @@ var NotificationPage = (function () {
     NotificationPage.prototype.notifyFC = function () {
         if (this.selectedItem) {
             this.emailModel.to = "matheus.alves1998@hotmail.com";
-            this.emailModel.subject = "Problema no banheiro " + this.param;
+            this.emailModel.subject = "Problema no " + this.param;
             if (this.othersSelected == true) {
                 this.emailModel.text = "Reportaram que o " + this.param + " está " + this.selectedItem;
             }
