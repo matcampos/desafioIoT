@@ -41,12 +41,12 @@ export class NotificationPage implements OnInit {
  
         if (this.selectedItem) {
             this.emailModel.to = "matheus.alves1998@hotmail.com";
-            this.emailModel.subject = "Report de " + localStorage.getItem('userName');
+            this.emailModel.subject = "Problema no banheiro "+this.param;
             if (this.othersSelected == true) {
-                this.emailModel.text = localStorage.getItem('userName') + " reportou que o " + this.param + " está " + this.selectedItem;
+                this.emailModel.text = "Reportaram que o " + this.param + " está " + this.selectedItem;
             } else {
                 if (this.problemDesc){
-                this.emailModel.text = localStorage.getItem('userName') + " reportou a seguinte mensagem no " + this.param + ": " + this.problemDesc;
+                this.emailModel.text = "Reportaram a seguinte mensagem no " + this.param + ": " + this.problemDesc;
                 }
                 else{
                     let toast = this.toastCtrl.create({
