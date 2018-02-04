@@ -4,6 +4,7 @@ import 'rxjs/add/operator/map';
 import { NavController, NavParams } from 'ionic-angular';
 import * as moment from 'moment';
 import { NotificationPage } from '../notification/notification';
+import { Observable } from 'rxjs/Observable';
 moment.locale('pt-BR');
 declare var $:any;
 @Component({
@@ -27,62 +28,75 @@ export class HomePage implements OnInit {
   minutes: [string, string, string, string, string, string, string, string, string, string] = ["", "", "", "", "", "", "", "", "", ""];
 
   ngOnInit() {
-    this.showContent = false;
-    this.http
-      .get('https://raspbarry-78187.firebaseio.com/toilets.json')
-      .subscribe(res => {
-        this.data = res;
-        // console.log(this.data);
-        this.data = JSON.parse(this.data._body);
-        // console.log(this.data);
-        this.aionViewDidLoad1(this.data.toilet1);
-        this.aionViewDidLoad2(this.data.toilet2);
-        this.aionViewDidLoad3(this.data.toilet3);
-        this.aionViewDidLoad4(this.data.toilet4);
-        this.aionViewDidLoad5(this.data.toilet5);
-        this.aionViewDidLoad6(this.data.toilet6);
-        this.aionViewDidLoad7(this.data.toilet7);
-        this.aionViewDidLoad8(this.data.toilet8);
-        this.aionViewDidLoad9(this.data.toilet9);
-        this.aionViewDidLoad10(this.data.toilet10);
-        this.aionViewDidLoad11(this.data.toilet11);
-        this.aionViewDidLoad12(this.data.toilet12);
 
-        this.showContent = true;
-      }, err => { console.log(err) })
+  
+    let observable = new Observable(observer => {
+      this.getData()
 
-      $( document ).ready(function() {
-        //$(window).on('resize', hexagonalPattern);
+    })
 
-        hexagonalPattern();
+    return  this.getData();
 
-        function hexagonalPattern() {
-            var width = $('.container').width();
-            var $item = $('.hexa');
-            var itemWidth = $item.width()*2;
-            var margin = 1;
-            var rowLength = Math.floor(width / (itemWidth*3/4+1));
+
+
+    //   $( document ).ready(function() {
+    //     //$(window).on('resize', hexagonalPattern);
+
+    //     hexagonalPattern();
+
+    //     function hexagonalPattern() {
+    //         var width = $('.container').width();
+    //         var $item = $('.hexa');
+    //         var itemWidth = $item.width()*2;
+    //         var margin = 1;
+    //         var rowLength = Math.floor(width / (itemWidth*3/4+1));
     
-            var itemLength = $item.length;
-            var patternLength = Math.floor(itemLength/rowLength);
-            var currentRow = 1;
+    //         var itemLength = $item.length;
+    //         var patternLength = Math.floor(itemLength/rowLength);
+    //         var currentRow = 1;
     
-            $item.each(function(index) {
-                $(this).removeClass('top');
-                if(index+1 > currentRow*rowLength){
-                currentRow++;
-                }
+    //         $item.each(function(index) {
+    //             $(this).removeClass('top');
+    //             if(index+1 > currentRow*rowLength){
+    //             currentRow++;
+    //             }
             
-                var indexRow = index+1 - (currentRow-1)*rowLength;
+    //             var indexRow = index+1 - (currentRow-1)*rowLength;
     
-                if(indexRow%2 == 0) {
-                $(this).addClass('top');
-                }
-            });
-        }            
-    });
+    //             if(indexRow%2 == 0) {
+    //             $(this).addClass('top');
+    //             }
+    //         });
+    //     }            
+    // });
   }
 
+  getData(){
+    this.http
+    .get('https://raspbarry-78187.firebaseio.com/toilets.json')
+    .subscribe(res => {
+      this.data = res;
+      // console.log(this.data);
+      this.data = JSON.parse(this.data._body);
+      // console.log(this.data);
+      this.aionViewDidLoad1(this.data.toilet1);
+      this.aionViewDidLoad2(this.data.toilet2);
+      this.aionViewDidLoad3(this.data.toilet3);
+      this.aionViewDidLoad4(this.data.toilet4);
+      this.aionViewDidLoad5(this.data.toilet5);
+      this.aionViewDidLoad6(this.data.toilet6);
+      this.aionViewDidLoad7(this.data.toilet7);
+      this.aionViewDidLoad8(this.data.toilet8);
+      this.aionViewDidLoad9(this.data.toilet9);
+      this.aionViewDidLoad10(this.data.toilet10);
+      this.aionViewDidLoad11(this.data.toilet11);
+      this.aionViewDidLoad12(this.data.toilet12);
+
+      this.showContent = true;
+      this.autoRefresh()
+    }, err => { console.log(err) })
+
+  }
   aionViewDidLoad1(info) {
     // Actual date
     this.actualDate = moment().toDate();
@@ -455,7 +469,7 @@ export class HomePage implements OnInit {
 
   autoRefresh() {
     setTimeout(() => {
-      this.ngOnInit();
+  this.getData()
       // console.log("refreshou")
     }, 10000);
   }
