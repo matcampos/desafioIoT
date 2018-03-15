@@ -13,6 +13,8 @@ webpackJsonp([0],{
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_moment__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_moment__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__notification_notification__ = __webpack_require__(374);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_Observable__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_rxjs_Observable__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -22,6 +24,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -43,7 +46,37 @@ var HomePage = (function () {
     }
     HomePage.prototype.ngOnInit = function () {
         var _this = this;
-        this.showContent = false;
+        var observable = new __WEBPACK_IMPORTED_MODULE_6_rxjs_Observable__["Observable"](function (observer) {
+            _this.getData();
+        });
+        return this.getData();
+        //   $( document ).ready(function() {
+        //     //$(window).on('resize', hexagonalPattern);
+        //     hexagonalPattern();
+        //     function hexagonalPattern() {
+        //         var width = $('.container').width();
+        //         var $item = $('.hexa');
+        //         var itemWidth = $item.width()*2;
+        //         var margin = 1;
+        //         var rowLength = Math.floor(width / (itemWidth*3/4+1));
+        //         var itemLength = $item.length;
+        //         var patternLength = Math.floor(itemLength/rowLength);
+        //         var currentRow = 1;
+        //         $item.each(function(index) {
+        //             $(this).removeClass('top');
+        //             if(index+1 > currentRow*rowLength){
+        //             currentRow++;
+        //             }
+        //             var indexRow = index+1 - (currentRow-1)*rowLength;
+        //             if(indexRow%2 == 0) {
+        //             $(this).addClass('top');
+        //             }
+        //         });
+        //     }            
+        // });
+    };
+    HomePage.prototype.getData = function () {
+        var _this = this;
         this.http
             .get('https://raspbarry-78187.firebaseio.com/toilets.json')
             .subscribe(function (res) {
@@ -64,31 +97,8 @@ var HomePage = (function () {
             _this.aionViewDidLoad11(_this.data.toilet11);
             _this.aionViewDidLoad12(_this.data.toilet12);
             _this.showContent = true;
+            _this.autoRefresh();
         }, function (err) { console.log(err); });
-        $(document).ready(function () {
-            //$(window).on('resize', hexagonalPattern);
-            hexagonalPattern();
-            function hexagonalPattern() {
-                var width = $('.container').width();
-                var $item = $('.hexa');
-                var itemWidth = $item.width() * 2;
-                var margin = 1;
-                var rowLength = Math.floor(width / (itemWidth * 3 / 4 + 1));
-                var itemLength = $item.length;
-                var patternLength = Math.floor(itemLength / rowLength);
-                var currentRow = 1;
-                $item.each(function (index) {
-                    $(this).removeClass('top');
-                    if (index + 1 > currentRow * rowLength) {
-                        currentRow++;
-                    }
-                    var indexRow = index + 1 - (currentRow - 1) * rowLength;
-                    if (indexRow % 2 == 0) {
-                        $(this).addClass('top');
-                    }
-                });
-            }
-        });
     };
     HomePage.prototype.aionViewDidLoad1 = function (info) {
         // Actual date
@@ -426,7 +436,7 @@ var HomePage = (function () {
     HomePage.prototype.autoRefresh = function () {
         var _this = this;
         setTimeout(function () {
-            _this.ngOnInit();
+            _this.getData();
             // console.log("refreshou")
         }, 10000);
     };
